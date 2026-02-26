@@ -1,10 +1,13 @@
 import javax.swing.*;
-
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+/**
+ * JFrame de Inicio de Sesión
+ * @author Unai
+ * @version 2.0
+ */
 public class InicioFrame extends JFrame {
 	
 	private JTextField userField;
@@ -18,16 +21,19 @@ public class InicioFrame extends JFrame {
 	private String usuario = "placeholder"; // elemento placeholder hasta que se implemente otra cosa
 	private int psw = 1234; // elemento placeholder hasta que se implemente otra cosa
 	
+	/**
+	 * Constructor del JFrame InicioFrame
+	 */
 	InicioFrame(){
 		
-		
-		
-		this.setTitle("Inicio Sesión Demo"); // establece el titulo del frame
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Sale de la aplicacion
-		this.setResizable(false); // No deja redimensionar el frame
-		this.setSize(640, 360); // Establece las dimensiones en x e y
+		// --- Configuración aspecto JFrame --- //
+		this.setTitle("Inicio Sesión Demo");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// -----------------------------------//
 		
+		// --- Barra de menú superior --- //
 		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		
@@ -38,19 +44,21 @@ public class InicioFrame extends JFrame {
 		
 		
 		salirItem = new JMenuItem("Salir");
-		salirItem.setFont(new Font("Consolas", Font.BOLD, 17));
+		salirItem.setFont(new Font("Consolas", Font.BOLD, 20));
 		salirItem.setPreferredSize(new Dimension(200, salirItem.getPreferredSize().height));
 		salirItem.addActionListener(e -> System.exit(0)); // Lambda function, cierra la aplicación
 		
 		menuBar.add(menu);
 		menu.add(salirItem);
 		this.setJMenuBar(menuBar);
+		// -------------------------------//
 		
-		
+		// --- JPanel principal --- //
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(SystemColor.activeCaption);
 		this.add(panel);
+		// ------------------------//
 		
 		// --- Label + TextField Usuario --- //
 		userLabel = new JLabel("Usuario:");
@@ -86,10 +94,16 @@ public class InicioFrame extends JFrame {
 		inicioButton.setBorderPainted(false);
 		inicioButton.addActionListener(e -> verificar());
 		panel.add(inicioButton);
+		// ---------------------------------//
 		
-		this.setUndecorated(true);
+		// --- Controla la visibiliadad del frame --- //
+		this.setUndecorated(true); // elimina la barra superior de la ventana (minimizar, pantalla completa, exit)
 		this.setVisible(true);
+		// ------------------------------------------//
 	}
+	/**
+	 * Verifica si el usuario y la contraseña introducidos son correctos.
+	 */
 	public void verificar() {
 			String usr = userField.getText();
 			int pass = Integer.parseInt(new String(pswField.getPassword()));
