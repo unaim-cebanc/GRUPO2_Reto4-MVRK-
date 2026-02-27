@@ -19,7 +19,7 @@ public class InicioFrame extends JFrame {
 	private JPasswordField pswField;
 	private JButton inicioButton;
 	private String usuario = "placeholder"; // elemento placeholder hasta que se implemente otra cosa
-	private int psw = 1234; // elemento placeholder hasta que se implemente otra cosa
+	private String psw = "1234"; // elemento placeholder hasta que se implemente otra cosa
 	
 	/**
 	 * Constructor del JFrame InicioFrame
@@ -31,6 +31,7 @@ public class InicioFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		// -----------------------------------//
 		
 		// --- Barra de menú superior --- //
@@ -86,14 +87,12 @@ public class InicioFrame extends JFrame {
 		// ---------------------------------//
 		
 		// --- Botón inicio sesión --- //
-		inicioButton = new JButton();
-		inicioButton.setContentAreaFilled(false);
-		inicioButton.setIcon(new ImageIcon("inicio_boton.png"));
-		inicioButton.setBounds(860, 480, 30, 30);
-		inicioButton.setFocusPainted(false);
-		inicioButton.setBorderPainted(false);
-		inicioButton.addActionListener(e -> verificar());
+		inicioButton = new JButton(">>");
+		inicioButton.setFont(new Font("Consolas", Font.BOLD, 10));
+		inicioButton.setBounds(860, 480, 45, 30);
+		
 		panel.add(inicioButton);
+		inicioButton.addActionListener(e -> verificar());
 		// ---------------------------------//
 		
 		// --- Controla la visibiliadad del frame --- //
@@ -106,12 +105,12 @@ public class InicioFrame extends JFrame {
 	 */
 	public void verificar() {
 			String usr = userField.getText();
-			int pass = Integer.parseInt(new String(pswField.getPassword()));
-			if (!usr.equals(usuario) || pass != psw) {
+			String pass = new String(pswField.getPassword());
+			if (!usr.equals(usuario) || !pass.equals(pass)) {
 				JOptionPane.showMessageDialog(panel, "Usuario o contraseña introducidos son incorrectos", "error", JOptionPane.ERROR_MESSAGE);
 				userField.setText("");
 				pswField.setText("");
-			} else if (usr.equals(usuario) && pass == psw) {
+			} else if (usr.equals(usuario) && pass.equals(psw)) {
 				new MainFrame();
 				this.dispose();
 			}
