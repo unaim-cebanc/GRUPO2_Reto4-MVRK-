@@ -1,0 +1,3 @@
+id_sistema,tipo_sistema,eficiencia_energetica,refrigerante,id_sala_servidores
+1,Aire,3.2,R410A,1
+2,Agua,4.0,R134a,2

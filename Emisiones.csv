@@ -1,0 +1,4 @@
+id_emision,fecha,tipo_emision,cantidad_toneladas,fuente,id_sede
+1,2026-02-01,CO2,1.2,Consumo_Energia,1
+2,2026-02-01,CO2,0.3,Control_Residuos,1
+3,2026-02-02,NOx,0.05,Sistemas_Refrigeracion,2
