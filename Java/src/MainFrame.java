@@ -11,10 +11,6 @@ import javax.swing.event.InternalFrameEvent;
 import java.awt.event.*;
 import java.awt.*;
  
-/*
- * InternalFrameDemo.java requires:
- *   MyInternalFrame.java
- */
 public class MainFrame extends JFrame implements ActionListener {
     
 	JDesktopPane desktop;
@@ -34,6 +30,7 @@ public class MainFrame extends JFrame implements ActionListener {
         desktop = new JDesktopPane(); //a specialized layered pane
         setContentPane(desktop);
         setJMenuBar(createMenuBar());
+        
         //Make dragging a little faster but perhaps uglier.
         desktop.setBackground(SystemColor.activeCaption);
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
@@ -43,7 +40,8 @@ public class MainFrame extends JFrame implements ActionListener {
         
     	JMenuBar menuBar = new JMenuBar();
     	menuBar.setBorderPainted(false);
-        //Set up the lone menu.
+        
+    	//Set up the lone menu.
         JMenu menu = new JMenu("Menu");
         menuBar.add(menu);
  
@@ -97,9 +95,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
  
     /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
+     * Create the GUI and show it.
      */
     
     public static void createAndShowGUI() {
