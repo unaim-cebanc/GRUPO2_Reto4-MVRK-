@@ -1,78 +1,118 @@
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.*;
-import java.awt.SystemColor;
+import javax.swing.JDesktopPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
+import javax.swing.JMenuBar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
-/**
- * Frame principal donde se realizarán todas las operaciones
- * @author Unai
- * @version 2.0
+import java.awt.event.*;
+import java.awt.*;
+ 
+/*
+ * InternalFrameDemo.java requires:
+ *   MyInternalFrame.java
  */
-public class MainFrame extends JFrame{
-
-	JMenuBar menuBar;
-	JMenu menu;
-	JMenuItem salirItem, clsSesItem;
-	JPanel panel;
-	JLabel placeholderLabel;
-	
-	MainFrame() {
-		
-		// --- Configuración aspecto JFrame --- //
-		this.getContentPane().setBackground(SystemColor.activeCaption);
-		this.setTitle("GUI Demo"); // establece el titulo del frame
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Sale de la aplicacion
-		this.setResizable(false); // No deja redimensionar el frame
-		this.setSize(640, 360); // Establece las dimensiones en x e y
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// -----------------------------------//
-		
-		// --- Barra de Menú Superior --- //
-		menuBar = new JMenuBar();
-		menuBar.setBorderPainted(false);
-		
-		
-		menu = new JMenu("Menu");
-		menu.setSize(300, 300);
-		menu.setFont(new Font("Consolas", Font.BOLD, 20));
-		
-		salirItem = new JMenuItem("Salir");
-		salirItem.setFont(new Font("Consolas", Font.BOLD, 17));
-		salirItem.setPreferredSize(new Dimension(200, salirItem.getPreferredSize().height));
-		salirItem.addActionListener(e -> System.exit(0)); // Lambda function, cierra la aplicación
-		
-		clsSesItem = new JMenuItem("Cerrar Sesión");
-		clsSesItem.setFont(new Font("Consolas", Font.BOLD, 17));
-		clsSesItem.setPreferredSize(new Dimension(200, salirItem.getPreferredSize().height));
-		clsSesItem.addActionListener(e -> {
-			new InicioFrame();
-			this.dispose();
-		});
-
-		menuBar.add(menu);
-		menu.add(salirItem);
-		menu.add(clsSesItem);
-		this.setJMenuBar(menuBar);
-		// -------------------------------//
-		
-		// --- JPanel principal --- //
-		panel = new JPanel();
-		panel.setBackground(SystemColor.activeCaption);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		this.add(panel);
-		// ------------------------//
-		
-		// --- Elementos Placeholder ---//
-		placeholderLabel = new JLabel("PLACEHOLDER");
-		placeholderLabel.setFont(new Font("Consolas", Font.BOLD, 80));
-		placeholderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(placeholderLabel);
-		// ----------------------------//
-		
-		// --- Controla la visibiliadad del frame --- //
-		this.setUndecorated(true); //Elimina la barra de encima de la ventana
-		this.setVisible(true); // Hace le GUI visible
-		// ------------------------------------------//
-	}
+public class MainFrame extends JFrame implements ActionListener {
+    
+	JDesktopPane desktop;
+ 
+    public MainFrame() {
+        super("InternalFrameDemo");
+ 
+        //Make the big window be indented 50 pixels from each edge
+        //of the screen.
+        int inset = 50;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(inset, inset,
+                  screenSize.width  - inset*2,
+                  screenSize.height - inset*2);
+ 
+        //Set up the GUI.
+        desktop = new JDesktopPane(); //a specialized layered pane
+        setContentPane(desktop);
+        setJMenuBar(createMenuBar());
+        //Make dragging a little faster but perhaps uglier.
+        desktop.setBackground(SystemColor.activeCaption);
+        desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+    }
+ 
+    private JMenuBar createMenuBar() {
+        
+    	JMenuBar menuBar = new JMenuBar();
+    	menuBar.setBorderPainted(false);
+        //Set up the lone menu.
+        JMenu menu = new JMenu("Menu");
+        menuBar.add(menu);
+ 
+        //Set up the first menu item.
+        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
+        menuItem.setActionCommand("new");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+ 
+        //Set up the second menu item.
+        menuItem = new JMenuItem("Cerrar");
+        menuItem.setActionCommand("quit");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+ 
+        return menuBar;
+    }
+    
+ 
+    //React to menu selections.
+    public void actionPerformed(ActionEvent e) {
+        if ("new".equals(e.getActionCommand())) { //new
+            createFrame();
+        } else { //quit
+            quit();
+        }
+    }
+ 
+    
+    //Create a new internal frame.
+    protected void createFrame() {
+        InternalFrame frame = new InternalFrame();
+        frame.setVisible(true); //necessary as of 1.3
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+ 
+    //Quit the application.
+    protected void quit() {
+        System.exit(0);
+    }
+ 
+    /**
+     * Create the GUI and show it.  For thread safety,
+     * this method should be invoked from the
+     * event-dispatching thread.
+     */
+    
+    public static void createAndShowGUI() {
+        //Make sure we have nice window decorations.
+        JFrame.setDefaultLookAndFeelDecorated(true);
+ 
+        //Create and set up the window.
+        MainFrame frame = new MainFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+ 
+        //Display the window.
+        frame.setUndecorated(true);
+        frame.setVisible(true);
+    }
 }
