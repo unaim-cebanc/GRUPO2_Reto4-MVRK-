@@ -153,6 +153,13 @@ public class InicioFrame extends JFrame {
 			userLabel.setText("User:");
 			pswLabel.setText("Password:");
 			panel.repaint();
+		} else if (idioma.equals("Euskera")) {
+			pred = 2;
+			errorMsg = "Erabiltzaie izena edo pasahitza okerra";
+			salirItem.setText("Irten");
+			userLabel.setText("Erabiltzaiea:");
+			pswLabel.setText("Pasahitza:");
+			panel.repaint();
 		}
 	}
 	public void errorInicioSesion() {
