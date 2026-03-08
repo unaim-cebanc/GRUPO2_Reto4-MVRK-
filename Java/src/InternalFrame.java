@@ -1,14 +1,10 @@
 	import javax.swing.JInternalFrame;
-import javax.swing.event.InternalFrameEvent;
-
-import java.awt.event.*;
-	import java.awt.*;
 
 	public class InternalFrame extends JInternalFrame{
 	static int openFrameCount = 0;
 	static final int xOffset = 30, yOffset = 30;
 	 
-	 public InternalFrame() {
+	public InternalFrame() {
 		 super("Document #" + (++openFrameCount), 
 				 true, //resizable
 				 true, //closable

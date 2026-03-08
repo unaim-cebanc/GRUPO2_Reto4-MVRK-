@@ -1,10 +1,9 @@
+
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -59,7 +58,6 @@ public class MainFrame extends JFrame implements ActionListener {
  
         return menuBar;
     }
-    
  
     //React to menu selections.
     public void actionPerformed(ActionEvent e) {
@@ -72,7 +70,7 @@ public class MainFrame extends JFrame implements ActionListener {
  
     
     //Create a new internal frame.
-    protected void createFrame() {
+    private void createFrame() {
         InternalFrame frame = new InternalFrame();
         frame.setVisible(true); //necessary as of 1.3
         desktop.add(frame);
@@ -87,10 +85,10 @@ public class MainFrame extends JFrame implements ActionListener {
             frame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
     }
-    
+
  
     //Quit the application.
-    protected void quit() {
+    private void quit() {
         System.exit(0);
     }
  

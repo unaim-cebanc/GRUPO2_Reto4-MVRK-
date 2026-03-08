@@ -11,6 +11,6 @@ public class Main {
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 		} catch (Exception ignored) {}
-		new InicioFrame();
+		new InicioFrame();	
 	}
 }
