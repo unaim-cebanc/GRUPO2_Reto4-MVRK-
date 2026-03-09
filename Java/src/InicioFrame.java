@@ -26,7 +26,9 @@ public class InicioFrame extends JFrame {
 	private JPanel panel;
 	private JPasswordField pswField;
 	private JButton inicioButton;
-	private JComboBox<String> idiomasBox;
+	private static JComboBox<String> idiomasBox;
+	private String usuario = "placeholder", psw = "1234"; // elemento placeholder hasta que se implemente otra cosa
+	private String errorMsg = "Usuario o Contraseña incorrectos";
 	public int pred;
 	
 	/**
@@ -128,7 +130,7 @@ public class InicioFrame extends JFrame {
 		// ---------------------------------//
 		
 		// --- Combo Box Idiomas --- //
-		String[] idiomas = {"Español", "English"};
+		String[] idiomas = {"Español", "English", "Euskera"};
 		idiomasBox = new JComboBox<String>(idiomas);
 		idiomasBox.setBounds(1400, 50, 100, 25);
 		idiomasBox.setFont(new Font("Consolas", Font.BOLD, 12));
@@ -145,11 +147,23 @@ public class InicioFrame extends JFrame {
 	}
 	
 	/**
+	 * Verifica si el usuario y la contraseña introducidos son correctos.
+	 */
+	public void verificar() {
+			String usr = userField.getText();
+			String pass = new String(pswField.getPassword());
+			if (usr.equals(usuario) && pass.equals(psw)) {
+				MainFrame.idioma = getIdioma();
+				MainFrame.createAndShowGUI();
+			} else if (!usr.equals(usuario) || !pass.equals(psw)) {this.errorInicioSesion();}
+	}
+	
+	/**
 	 * Cuando el usuario elige un idioma usando el Combo Box localizado en la esquina superior derecha,
 	 * mira cual es el idioma seleccionado. 
 	 * @return Devuelve el valor del item seleccionado en el Combo Box.
 	 */
-	public String getIdioma() {
+	public static String getIdioma() {
 		return (String)idiomasBox.getSelectedItem();
 	}
 	
@@ -167,6 +181,13 @@ public class InicioFrame extends JFrame {
 			salirItem.setText("Exit");
 			userLabel.setText("User:");
 			pswLabel.setText("Password:");
+			panel.repaint();
+		} else if (idioma.equals("Euskera")) {
+			pred = 2;
+			errorMsg = "Erabiltzaie izena edo pasahitza okerra";
+			salirItem.setText("Irten");
+			userLabel.setText("Erabiltzaiea:");
+			pswLabel.setText("Pasahitza:");
 			panel.repaint();
 		}
 	}
