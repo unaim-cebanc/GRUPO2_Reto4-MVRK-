@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"InicioFrame"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"MainFrame"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Database"},{"p":"<Unnamed>","l":"InicioFrame"},{"p":"<Unnamed>","l":"InternalFrame"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"MainFrame"}];updateSearchResults();
