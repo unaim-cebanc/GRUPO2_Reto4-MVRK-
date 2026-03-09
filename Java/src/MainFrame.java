@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.awt.*;
  
 public class MainFrame extends JFrame implements ActionListener {
-    
+    public static String idioma = "";
 	JDesktopPane desktop;
  
     public MainFrame() {
@@ -46,17 +46,43 @@ public class MainFrame extends JFrame implements ActionListener {
         menuBar.add(menu);
  
         //Set up the first menu item.
-        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
-        menuItem.setActionCommand("new");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
- 
-        //Set up the second menu item.
-        menuItem = new JMenuItem("Cerrar");
-        menuItem.setActionCommand("quit");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
- 
+        if (this.idioma == "Español") {
+	        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
+	        menuItem.setActionCommand("new");
+	        menuItem.addActionListener(this);
+	        menu.add(menuItem);
+	 
+	        //Set up the second menu item.
+	        menuItem = new JMenuItem("Cerrar");
+	        menuItem.setActionCommand("quit");
+	        menuItem.addActionListener(this);
+	        menu.add(menuItem);
+        }
+        else if (this.idioma == "English") {
+        		JMenuItem menuItem = new JMenuItem("New window");
+                menuItem.setActionCommand("new");
+                menuItem.addActionListener(this);
+                menu.add(menuItem);
+         
+                //Set up the second menu item.
+                menuItem = new JMenuItem("Exit");
+                menuItem.setActionCommand("quit");
+                menuItem.addActionListener(this);
+                menu.add(menuItem);	
+        }
+        else if (this.idioma == "Euskera") {
+    		JMenuItem menuItem = new JMenuItem("Lehio berria");
+            menuItem.setActionCommand("new");
+            menuItem.addActionListener(this);
+            menu.add(menuItem);
+     
+            //Set up the second menu item.
+            menuItem = new JMenuItem("Irten");
+            menuItem.setActionCommand("quit");
+            menuItem.addActionListener(this);
+            menu.add(menuItem);	
+        }
+        		
         return menuBar;
     }
     
@@ -111,4 +137,5 @@ public class MainFrame extends JFrame implements ActionListener {
         frame.setUndecorated(true);
         frame.setVisible(true);
     }
+    
 }
