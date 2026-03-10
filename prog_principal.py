@@ -82,6 +82,19 @@ def hacer_busqueda_sedes(num_sede):
     opcion = input("\nElige un archivo (1-6) o 0 para volver: ").strip()
     if opcion == "0":
         main()
+    if opcion == "6":
+        try:
+            df1 = pd.read_csv(archivos_sedes["4"])
+            df2 = pd.read_csv(archivos_sedes[opcion])
+            df_filtrado = pd.merge(df1, df2, left_on='id_sala_servidor', right_on='id_sala_servidor', how='inner')
+            df_filtrado = df_filtrado[df_filtrado["id_sede"] == num_sede]
+            print(f"\n Contenido de {archivos_sedes[opcion]}:")
+            print(df_filtrado.to_string(index=False))  
+            input("\nPresiona Enter para continuar...")
+        except FileNotFoundError:
+            print(" Archivo no encontrado. Verifica que esté en la misma carpeta.")
+        except Exception as e:
+            print(f" Error al leer archivo: {e}")
     if opcion in archivos_sedes:
         try:
             df = pd.read_csv(archivos_sedes[opcion])
