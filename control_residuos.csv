@@ -1,31 +1,31 @@
 id_residuo,id_sede,tipo_residuo,cantidad_kg,metodo_gestion,fecha
-1,7,Electronicos,15,Reciclaje especializado,2026-01-01 10:00:00
-2,3,Plasticos,25,Reciclaje,2026-01-01 11:00:00
-3,10,Papel/Carton,40,Reciclaje,2026-01-01 12:00:00
-4,1,Organicos,30,Compostaje,2026-01-01 13:00:00
+1,7,Electrónicos,15,Reciclaje especializado,2026-01-01 10:00:00
+2,3,Plásticos,25,Reciclaje,2026-01-01 11:00:00
+3,10,Papel/Cartón,40,Reciclaje,2026-01-01 12:00:00
+4,1,Orgánicos,30,Compostaje,2026-01-01 13:00:00
 5,8,Metales,18,Reciclaje,2026-01-01 14:00:00
-6,5,Electronicos,22,Reciclaje especializado,2026-01-01 15:00:00
-7,2,Plasticos,28,Reciclaje,2026-01-01 16:00:00
-8,9,Papel/Carton,35,Reciclaje,2026-01-01 17:00:00
-9,4,Organicos,32,Compostaje,2026-01-01 18:00:00
+6,5,Electrónicos,22,Reciclaje especializado,2026-01-01 15:00:00
+7,2,Plásticos,28,Reciclaje,2026-01-01 16:00:00
+8,9,Papel/Cartón,35,Reciclaje,2026-01-01 17:00:00
+9,4,Orgánicos,32,Compostaje,2026-01-01 18:00:00
 10,6,Metales,20,Reciclaje,2026-01-01 19:00:00
-11,2,Electronicos,17,Reciclaje especializado,2026-01-02 10:00:00
-12,9,Plasticos,26,Reciclaje,2026-01-02 11:00:00
-13,4,Papel/Carton,42,Reciclaje,2026-01-02 12:00:00
-14,7,Organicos,29,Compostaje,2026-01-02 13:00:00
+11,2,Electrónicos,17,Reciclaje especializado,2026-01-02 10:00:00
+12,9,Plásticos,26,Reciclaje,2026-01-02 11:00:00
+13,4,Papel/Cartón,42,Reciclaje,2026-01-02 12:00:00
+14,7,Orgánicos,29,Compostaje,2026-01-02 13:00:00
 15,1,Metales,19,Reciclaje,2026-01-02 14:00:00
-16,10,Electronicos,24,Reciclaje especializado,2026-01-02 15:00:00
-17,6,Plasticos,27,Reciclaje,2026-01-02 16:00:00
-18,3,Papel/Carton,38,Reciclaje,2026-01-02 17:00:00
-19,8,Organicos,31,Compostaje,2026-01-02 18:00:00
+16,10,Electrónicos,24,Reciclaje especializado,2026-01-02 15:00:00
+17,6,Plásticos,27,Reciclaje,2026-01-02 16:00:00
+18,3,Papel/Cartón,38,Reciclaje,2026-01-02 17:00:00
+19,8,Orgánicos,31,Compostaje,2026-01-02 18:00:00
 20,5,Metales,21,Reciclaje,2026-01-02 19:00:00
-21,9,Electronicos,16,Reciclaje especializado,2026-01-03 10:00:00
-22,6,Plasticos,24,Reciclaje,2026-01-03 11:00:00
-23,1,Papel/Carton,39,Reciclaje,2026-01-03 12:00:00
-24,5,Organicos,33,Compostaje,2026-01-03 13:00:00
+21,9,Electrónicos,16,Reciclaje especializado,2026-01-03 10:00:00
+22,6,Plásticos,24,Reciclaje,2026-01-03 11:00:00
+23,1,Papel/Cartón,39,Reciclaje,2026-01-03 12:00:00
+24,5,Orgánicos,33,Compostaje,2026-01-03 13:00:00
 25,3,Metales,23,Reciclaje,2026-01-03 14:00:00
-26,8,Electronicos,25,Reciclaje especializado,2026-01-03 15:00:00
-27,4,Plasticos,29,Reciclaje,2026-01-03 16:00:00
-28,2,Papel/Carton,41,Reciclaje,2026-01-03 17:00:00
-29,10,Organicos,28,Compostaje,2026-01-03 18:00:00
+26,8,Electrónicos,25,Reciclaje especializado,2026-01-03 15:00:00
+27,4,Plásticos,29,Reciclaje,2026-01-03 16:00:00
+28,2,Papel/Cartón,41,Reciclaje,2026-01-03 17:00:00
+29,10,Orgánicos,28,Compostaje,2026-01-03 18:00:00
 30,7,Metales,20,Reciclaje,2026-01-03 19:00:00
