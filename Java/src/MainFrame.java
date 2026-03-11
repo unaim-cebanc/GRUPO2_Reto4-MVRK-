@@ -1,4 +1,3 @@
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -41,8 +40,14 @@ JPanel deletePanel;        // RECUADRO
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         desktop.setLayout(null); // para colocar el recuadro por coordenadas
         setContentPane(desktop);
+
+        // Barra de menú
+        setJMenuBar(createMenuBar());
+
+        // Recuadro con botón de exportar
+        createExportPanel();
     }
- 
+
     private JMenuBar createMenuBar() {
         
     	JMenuBar menuBar = new JMenuBar();
@@ -76,6 +81,12 @@ JPanel deletePanel;        // RECUADRO
 	        deleteItem.setActionCommand("delete");
 	        deleteItem.addActionListener(this);
 	        menu.add(deleteItem);
+          
+          // ITEM: EXPORTAR BD A CSV
+        JMenuItem exportItem = new JMenuItem("Exportar BD a CSV");
+        exportItem.setActionCommand("export");
+        exportItem.addActionListener(this);
+        menu.add(exportItem);
 	        
         }
         else if (MainFrame.idioma.equals ("English")) {
@@ -100,6 +111,12 @@ JPanel deletePanel;        // RECUADRO
     	        deleteItem.setActionCommand("delete");
     	        deleteItem.addActionListener(this);
     	        menu.add(deleteItem);
+          
+              // ITEM: EXPORTAR BD A CSV
+              JMenuItem exportItem = new JMenuItem("Export DB to CSV");
+              exportItem.setActionCommand("export");
+              exportItem.addActionListener(this);
+              menu.add(exportItem);
         }
         else if (MainFrame.idioma.equals ("Euskera")) {
             //Set up the second menu item.
@@ -123,6 +140,12 @@ JPanel deletePanel;        // RECUADRO
 	        deleteItem.setActionCommand("delete");
 	        deleteItem.addActionListener(this);
 	        menu.add(deleteItem);
+          
+          // ITEM: EXPORTAR BD A CSV
+          JMenuItem exportItem = new JMenuItem("Esportatu DB CSVra");
+          exportItem.setActionCommand("export");
+          exportItem.addActionListener(this);
+          menu.add(exportItem);
         }
         return menuBar;
     }
@@ -160,15 +183,49 @@ JPanel deletePanel;        // RECUADRO
         desktop.add(deletePanel);
     }
  
+    // Recuadro con botón en la pantalla principal
+    private void createExportPanel() {
+        exportPanel = new JPanel();
+        exportPanel.setLayout(null);
+        exportPanel.setBounds(30, 30, 260, 120); // posición y tamaño del recuadro
+        exportPanel.setBackground(Color.WHITE);
+        if (InicioFrame.getIdioma().equals("Español")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("Herramientas BD"));
+        } else if (InicioFrame.getIdioma().equals("English")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("DB Tools"));
+        } else if (InicioFrame.getIdioma().equals("Euskera")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("DB Tresnak"));
+        }
+
+        exportButton = new JButton();  
+        if (InicioFrame.getIdioma().equals("Español")) {
+          exportButton.setText("Exportar BD a CSV");
+        } else if (InicioFrame.getIdioma.equals("English")){
+          exportButton.setText("Export DB to CSV")
+        } else if (InicioFrame.getIdioma().equals("Euskera")) {
+          exportButton.setText("Esportatu DB CSVra")
+        }
+        
+        exportButton.setBounds(20, 40, 220, 40);
+        exportButton.setFont(new Font("Consolas", Font.BOLD, 14));
+        exportButton.setActionCommand("export"); // reutilizamos el mismo comando
+        exportButton.addActionListener(this);
+
+        exportPanel.add(exportButton);
+        desktop.add(exportPanel);
+    }
+    
     //React to menu selections.
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("delete")) {
             Database.eliminarDatos();
         } else if (e.getActionCommand().equals("sedes")) {
         	createSedesFrame();
+        } else if (e.getActionCommand().equals("export")) {
+            exportarBD();
         } else { //quit
             quit();
-        }
+        } 
     }  
     
     private void createSedesFrame() {
@@ -191,22 +248,44 @@ JPanel deletePanel;        // RECUADRO
     private void quit() {
         System.exit(0);
     }
- 
+
+    // Exportar BD a CSV (lo llaman el menú y el botón)
+    private void exportarBD() {
+        javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+        chooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+
+        int returnVal = chooser.showSaveDialog(this);
+        if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
+            java.io.File dir = chooser.getSelectedFile();
+            String ruta = dir.getAbsolutePath();
+            try {
+                Database.exportarBDaCSVs(ruta);
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Base de datos exportada a CSV en:\n" + ruta,
+                        "Exportación completada",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Error al exportar la base de datos:\n" + ex.getMessage(),
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
     /**
      * Create the GUI and show it.
      */
-    
     public static void createAndShowGUI() {
-        //Make sure we have nice window decorations.
         JFrame.setDefaultLookAndFeelDecorated(true);
- 
-        //Create and set up the window.
+
         MainFrame frame = new MainFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
- 
-        //Display the window.
+
         frame.setUndecorated(true);
         frame.setVisible(true);
     }
 }
+	
