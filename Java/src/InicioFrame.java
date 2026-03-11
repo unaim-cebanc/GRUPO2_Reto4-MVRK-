@@ -147,18 +147,6 @@ public class InicioFrame extends JFrame {
 	}
 	
 	/**
-	 * Verifica si el usuario y la contraseña introducidos son correctos.
-	 */
-	public void verificar() {
-			String usr = userField.getText();
-			String pass = new String(pswField.getPassword());
-			if (usr.equals(usuario) && pass.equals(psw)) {
-				MainFrame.idioma = getIdioma();
-				MainFrame.createAndShowGUI();
-			} else if (!usr.equals(usuario) || !pass.equals(psw)) {this.errorInicioSesion();}
-	}
-	
-	/**
 	 * Cuando el usuario elige un idioma usando el Combo Box localizado en la esquina superior derecha,
 	 * mira cual es el idioma seleccionado. 
 	 * @return Devuelve el valor del item seleccionado en el Combo Box.

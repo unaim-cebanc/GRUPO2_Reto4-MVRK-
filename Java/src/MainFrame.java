@@ -1,18 +1,28 @@
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.BorderFactory;
 
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.awt.*;
  
 public class MainFrame extends JFrame implements ActionListener {
-    public static String idioma = "";
+    public static String idioma = "Español";
 	JDesktopPane desktop;
+	JButton deleteButton;      // BOTÓN DEL RECUADRO
+	JPanel deletePanel;        // RECUADRO
  
     public MainFrame() {
         super("InternalFrameDemo");
@@ -29,10 +39,15 @@ public class MainFrame extends JFrame implements ActionListener {
         desktop = new JDesktopPane(); //a specialized layered pane
         setContentPane(desktop);
         setJMenuBar(createMenuBar());
+     
+        // Recuadro con botón de exportar
+        createDeletePanel();
         
         //Make dragging a little faster but perhaps uglier.
         desktop.setBackground(SystemColor.activeCaption);
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        desktop.setLayout(null); // para colocar el recuadro por coordenadas
+        setContentPane(desktop);
     }
  
     private JMenuBar createMenuBar() {
@@ -45,7 +60,7 @@ public class MainFrame extends JFrame implements ActionListener {
         menuBar.add(menu);
  
         //Set up the first menu item.
-        if (this.idioma == "Español") {
+        if (MainFrame.idioma.equals ("Español")) {
 	        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
 	        menuItem.setActionCommand("new");
 	        menuItem.addActionListener(this);
@@ -57,7 +72,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	        menuItem.addActionListener(this);
 	        menu.add(menuItem);
         }
-        else if (this.idioma == "English") {
+        else if (MainFrame.idioma.equals ("English")) {
         		JMenuItem menuItem = new JMenuItem("New window");
                 menuItem.setActionCommand("new");
                 menuItem.addActionListener(this);
@@ -69,7 +84,7 @@ public class MainFrame extends JFrame implements ActionListener {
                 menuItem.addActionListener(this);
                 menu.add(menuItem);	
         }
-        else if (this.idioma == "Euskera") {
+        else if (MainFrame.idioma.equals ("Euskera")) {
     		JMenuItem menuItem = new JMenuItem("Lehio berria");
             menuItem.setActionCommand("new");
             menuItem.addActionListener(this);
@@ -81,19 +96,50 @@ public class MainFrame extends JFrame implements ActionListener {
             menuItem.addActionListener(this);
             menu.add(menuItem);	
         }
-        		
+        
+        
+        
+     // ITEM: Borrar datos de sql
+        JMenuItem deleteItem = new JMenuItem("Borrar datos de la BD");
+        deleteItem.setActionCommand("delete");
+        deleteItem.addActionListener(this);
+        menu.add(deleteItem);
+
+        
         return menuBar;
+    }
+    
+    
+ // Recuadro con botón en la pantalla principal
+    private void createDeletePanel() {
+        deletePanel = new JPanel();
+        deletePanel.setLayout(null);
+        deletePanel.setBounds(500, 30, 260, 120); // posición y tamaño del recuadro
+        deletePanel.setBackground(Color.WHITE);
+        deletePanel.setBorder(BorderFactory.createTitledBorder("Eliminar datos BD"));
+
+        deleteButton = new JButton("Eliminar datos BD");
+        deleteButton.setBounds(20, 40, 220, 40);
+        deleteButton.setFont(new Font("Consolas", Font.BOLD, 14));
+        deleteButton.setActionCommand("delete"); // reutilizar el mismo comando
+        deleteButton.addActionListener(this);
+
+        deletePanel.add(deleteButton);
+        desktop.add(deletePanel);
     }
  
     //React to menu selections.
     public void actionPerformed(ActionEvent e) {
         if ("new".equals(e.getActionCommand())) { //new
             createFrame();
+            
+        } else if (e.getActionCommand().equals("delete")) {
+            Database.eliminarDatos();
         } else { //quit
             quit();
+   
         }
     }
- 
     
     //Create a new internal frame.
     private void createFrame() {
@@ -117,6 +163,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private void quit() {
         System.exit(0);
     }
+    
  
     /**
      * Create the GUI and show it.
