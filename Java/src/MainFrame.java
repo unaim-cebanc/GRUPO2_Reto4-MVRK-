@@ -60,10 +60,45 @@ public class MainFrame extends JFrame implements ActionListener {
         JMenu menuAgregar = new JMenu("Agregar Datos");
         menu.add(menuAgregar);
         
-        JMenuItem menuItemSedes  = new JMenuItem("Tabla Sedes");
-        menuItemSedes.setActionCommand("sedes");
-        menuItemSedes.addActionListener(this);
-        menuAgregar.add(menuItemSedes);
+        JMenuItem menuItemAgregar  = new JMenuItem("Tabla Sedes");
+        menuItemAgregar.setActionCommand("sedes");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Usuarios");
+        menuItemAgregar.setActionCommand("usuarios");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Residuos");
+        menuItemAgregar.setActionCommand("residuos");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Empleados");
+        menuItemAgregar.setActionCommand("empleados");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Consumo Energia");
+        menuItemAgregar.setActionCommand("energia");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Emisiones");
+        menuItemAgregar.setActionCommand("emisiones");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Servidores");
+        menuItemAgregar.setActionCommand("servidores");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
+        
+        menuItemAgregar  = new JMenuItem("Tabla Sistema Refrigeracio");
+        menuItemAgregar.setActionCommand("refrigeracion");
+        menuItemAgregar.addActionListener(this);
+        menuAgregar.add(menuItemAgregar);
         
         return menuBar;
     }
@@ -71,11 +106,24 @@ public class MainFrame extends JFrame implements ActionListener {
     //React to menu selections.
     public void actionPerformed(ActionEvent e) {
         if ("new".equals(e.getActionCommand())) {
-            createFrame();                        
+            createFrame();
         } else if ("sedes".equals(e.getActionCommand())) {
-        	createSedesFrame();
-        }
-        else { //quit
+            createSedesFrame();
+        } else if ("usuarios".equals(e.getActionCommand())) {
+            createUsuariosFrame();
+        } else if ("residuos".equals(e.getActionCommand())) {
+            createResiduosFrame();
+        } else if ("empleados".equals(e.getActionCommand())) {
+            createEmpleadosFrame();
+        } else if ("energia".equals(e.getActionCommand())) {
+            createConsumoEnergiaFrame();
+        } else if ("emisiones".equals(e.getActionCommand())) {
+            createEmisionesFrame();
+        } else if ("servidores".equals(e.getActionCommand())) {
+            createServidoresFrame();
+        } else if ("refrigeracion".equals(e.getActionCommand())) {
+            createRefrigeracionFrame();
+        } else {
             quit();
         }
     }
@@ -100,6 +148,118 @@ public class MainFrame extends JFrame implements ActionListener {
     private void createSedesFrame() {
     	InternalFrameSedes frame = new InternalFrameSedes();
         frame.setVisible(true); //necessary as of 1.3
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createUsuariosFrame() {
+    	InternalFrameUsuarios frame = new InternalFrameUsuarios();
+        frame.setVisible(true); //necessary as of 1.3
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createResiduosFrame() {
+        InternalFrameResiduos frame = new InternalFrameResiduos();
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createEmpleadosFrame() {
+        InternalFrameEmpleados frame = new InternalFrameEmpleados();
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createConsumoEnergiaFrame() {
+        InternalFrameConsumoEnergia frame = new InternalFrameConsumoEnergia();
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createEmisionesFrame() {
+        InternalFrameEmisiones frame = new InternalFrameEmisiones();
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createServidoresFrame() {
+        InternalFrameServidores frame = new InternalFrameServidores();
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.setBackground(Color.white);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                InternalFrame.openFrameCount--;
+            }
+        });
+        try {
+            frame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+    }
+    
+    private void createRefrigeracionFrame() {
+        InternalFrameRefrigeracion frame = new InternalFrameRefrigeracion();
+        frame.setVisible(true);
         desktop.add(frame);
         frame.setBackground(Color.white);
         frame.addInternalFrameListener(new InternalFrameAdapter() {
