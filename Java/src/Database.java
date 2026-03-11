@@ -4,9 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.util.ArrayList;
 
 public class Database {
 	
@@ -50,13 +51,20 @@ public class Database {
         	JTextField tablaField = new JTextField();
         	JTextField columnaField = new JTextField();
         	JTextField idField = new JTextField();
-        	
-        	// Campos de texto para que el usuario introduzca los datos
         	Object[] message = {
         		    "Tabla:", tablaField,
         		    "Columna:", columnaField,
         		    "ID:", idField
         		    };
+        	// Campos de texto para que el usuario introduzca los datos
+        	if (InicioFrame.getIdioma().equals("English")) {
+        		message = {
+            		    "Tabla:", tablaField,
+            		    "Columna:", columnaField,
+            		    "ID:", idField
+            		    };
+        	}
+        	
         	
         	// Muestra una ventana de diálogo con los campos anteriores
             int option = JOptionPane.showConfirmDialog(
@@ -114,4 +122,21 @@ public class Database {
         }
     }
 	
+    // *** NUEVO: insertar datos en una tabla ***
+    public static boolean insertarDatosSedes(String nombre, String ciudad, String superficie) {
+        try {
+            Connection conn = DriverManager.getConnection(URL, USER, PSW);
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO sedes (nombre_sede, ciudad, superficie_m2) VALUES (?, ?, ?)");
+            ps.setString(1, nombre);
+            ps.setString(2, ciudad);
+            ps.setInt(3, Integer.parseInt(superficie));
+            ps.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        	return false;
+        }
+        JOptionPane.showMessageDialog(null, "Datos insertados correctamente", "Status", JOptionPane.INFORMATION_MESSAGE);
+        return true;
+    }
 }

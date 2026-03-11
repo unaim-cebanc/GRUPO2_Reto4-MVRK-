@@ -27,9 +27,8 @@ public class InicioFrame extends JFrame {
 	private JPasswordField pswField;
 	private JButton inicioButton;
 	private static JComboBox<String> idiomasBox;
-	private String usuario = "placeholder", psw = "1234"; // elemento placeholder hasta que se implemente otra cosa
-	private String errorMsg = "Usuario o Contraseña incorrectos";
-	public int pred;
+	private String errorMsg = "Usuario o contraseña incorrectos";
+	private String loginMsg = "Sesión iniciada correctamente!";
 	
 	/**
 	 * Constructor del JFrame InicioFrame
@@ -65,26 +64,26 @@ public class InicioFrame extends JFrame {
 		
 		// --- Label + TextField Usuario --- //
 		userLabel = new JLabel("Usuario:");
-		userLabel.setBounds(550, 400, 130, 30);
+		userLabel.setBounds(530, 400, 160, 30);
 		userLabel.setFont(new Font("Consolas", Font.BOLD, 20));
 		userLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(userLabel);
 		
 		userField = new JTextField();
-		userField.setBounds(700, 400, 160, 30);
+		userField.setBounds(710, 400, 200, 30);
 		userField.setFont(new Font("Consolas", Font.BOLD, 20));
 		panel.add(userField);
 		// ---------------------------------//
 		
 		// --- Label + Field Contraseña --- //
 		pswLabel = new JLabel("Contraseña:");
-		pswLabel.setBounds(550, 480, 130, 30);
+		pswLabel.setBounds(530, 480, 160, 30);
 		pswLabel.setFont(new Font("Consolas", Font.BOLD, 20));
 		pswLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(pswLabel);
 		
 		pswField = new JPasswordField();
-		pswField.setBounds(700, 480, 160, 30);
+		pswField.setBounds(710, 480, 200, 30);
 		pswField.setFont(new Font("Consolas", Font.BOLD, 20));
 		panel.add(pswField);
 		// ---------------------------------//
@@ -92,7 +91,7 @@ public class InicioFrame extends JFrame {
 		// --- Botón inicio sesión --- //
 		inicioButton = new JButton(">>");
 		inicioButton.setFont(new Font("Consolas", Font.BOLD, 10));
-		inicioButton.setBounds(860, 480, 45, 30);
+		inicioButton.setBounds(910, 480, 45, 30);
 		
 		panel.add(inicioButton);
 		inicioButton.addActionListener(new ActionListener() {
@@ -110,20 +109,22 @@ public class InicioFrame extends JFrame {
 					// Valida que el usuario existe en la base de datos y que los datos introducidos son correctos
 					if (Database.validarLogin(usuario, contraseña)) {
 						
-						JOptionPane.showMessageDialog(panel, "Sesión iniciada correctamente!", "Login Status", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(panel, loginMsg, "Login Status", JOptionPane.INFORMATION_MESSAGE);
+						MainFrame.createAndShowGUI();
+						userField.setText("");
+						userField.setEditable(false);
+						pswField.setText("");
+						pswField.setEditable(false);
+						idiomasBox.setEnabled(false);
 					} else {
 						
-						JOptionPane.showMessageDialog(panel, "Error al iniciar sesión, pruebe a introducir sus credenciales otra vez",
-								"Login Status", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panel, errorMsg, "Login Status", JOptionPane.ERROR_MESSAGE);
 						
 						userField.setText("");
 						pswField.setText("");
 						
 						userLabel.requestFocus();
 					}
-				} else {
-					
-					JOptionPane.showMessageDialog(panel, "Los campos no pueden estar vacios", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -134,7 +135,7 @@ public class InicioFrame extends JFrame {
 		idiomasBox = new JComboBox<String>(idiomas);
 		idiomasBox.setBounds(1400, 50, 100, 25);
 		idiomasBox.setFont(new Font("Consolas", Font.BOLD, 12));
-		idiomasBox.setSelectedIndex(pred);
+		idiomasBox.setSelectedIndex(0);
 		idiomasBox.setFocusable(false);
 		idiomasBox.addActionListener(e -> setIdioma());
 		panel.add(idiomasBox);
@@ -161,18 +162,22 @@ public class InicioFrame extends JFrame {
 	public void setIdioma() {
 		String idioma = getIdioma();
 		if (idioma.equals("Español")) {
+			errorMsg = "Usuario o contraseña incorrectos";
+			loginMsg = "Sesión iniciada correctamente!";
 			salirItem.setText("Salir");
 			userLabel.setText("Usuario:");
 			pswLabel.setText("Contraseña:");
 			panel.repaint();
 		} else if (idioma.equals("English")) {
+			errorMsg = "User or password incorrect";
+			loginMsg = "Log-in correct!";
 			salirItem.setText("Exit");
 			userLabel.setText("User:");
 			pswLabel.setText("Password:");
 			panel.repaint();
 		} else if (idioma.equals("Euskera")) {
-			pred = 2;
 			errorMsg = "Erabiltzaie izena edo pasahitza okerra";
+			loginMsg = "Saioa behar bezala hasi da!";
 			salirItem.setText("Irten");
 			userLabel.setText("Erabiltzaiea:");
 			pswLabel.setText("Pasahitza:");

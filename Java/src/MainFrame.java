@@ -1,33 +1,26 @@
-
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.swing.BorderFactory;
-
-import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import javax.swing.BorderFactory;import java.awt.event.*;
 import java.awt.*;
- 
+
 public class MainFrame extends JFrame implements ActionListener {
-    public static String idioma = "Español";
-	JDesktopPane desktop;
-	JButton deleteButton;      // BOTÓN DEL RECUADRO
-	JPanel deletePanel;        // RECUADRO
- 
+public static String idioma = InicioFrame.getIdioma();
+private JDesktopPane desktop;
+JButton deleteButton;      // BOTÓN DEL RECUADRO
+JPanel deletePanel;        // RECUADRO
+
     public MainFrame() {
-        super("InternalFrameDemo");
  
-        //Make the big window be indented 50 pixels from each edge
+    	
+    	
+    	//Make the big window be indented 50 pixels from each edge
         //of the screen.
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -55,57 +48,82 @@ public class MainFrame extends JFrame implements ActionListener {
     	JMenuBar menuBar = new JMenuBar();
     	menuBar.setBorderPainted(false);
         
-    	//Set up the lone menu.
+    	//Set up barra menu.
         JMenu menu = new JMenu("Menu");
         menuBar.add(menu);
+        
  
-        //Set up the first menu item.
+        //Set up primer menu item.
         if (MainFrame.idioma.equals ("Español")) {
-	        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
-	        menuItem.setActionCommand("new");
-	        menuItem.addActionListener(this);
-	        menu.add(menuItem);
-	 
-	        //Set up the second menu item.
-	        menuItem = new JMenuItem("Cerrar");
+	        //Set up segundo menu item.
+	        JMenuItem menuItem = new JMenuItem("Cerrar");
 	        menuItem.setActionCommand("quit");
 	        menuItem.addActionListener(this);
 	        menu.add(menuItem);
+	        menu.addSeparator();
+	        
+	        //Set up tercer menu item
+	        JMenu menuAgregar = new JMenu("Agregar Datos");
+	        menu.add(menuAgregar);
+	        
+	        JMenuItem menuItemSedes  = new JMenuItem("Tabla Sedes");
+	        menuItemSedes.setActionCommand("sedes");
+	        menuItemSedes.addActionListener(this);
+	        menuAgregar.add(menuItemSedes);
+	        
+	        // ITEM: Borrar datos de sql
+	        JMenuItem deleteItem = new JMenuItem("Borrar datos");
+	        deleteItem.setActionCommand("delete");
+	        deleteItem.addActionListener(this);
+	        menu.add(deleteItem);
+	        
         }
         else if (MainFrame.idioma.equals ("English")) {
-        		JMenuItem menuItem = new JMenuItem("New window");
-                menuItem.setActionCommand("new");
-                menuItem.addActionListener(this);
-                menu.add(menuItem);
-         
                 //Set up the second menu item.
-                menuItem = new JMenuItem("Exit");
+                JMenuItem menuItem = new JMenuItem("Exit");
                 menuItem.setActionCommand("quit");
                 menuItem.addActionListener(this);
                 menu.add(menuItem);	
+                menu.addSeparator();
+    	        
+    	        //Set up tercer menu item
+    	        JMenu menuAgregar = new JMenu("Add Data");
+    	        menu.add(menuAgregar);
+    	        
+    	        JMenuItem menuItemSedes  = new JMenuItem("Headquarters Table");
+    	        menuItemSedes.setActionCommand("sedes");
+    	        menuItemSedes.addActionListener(this);
+    	        menuAgregar.add(menuItemSedes);
+    	        
+    	        // ITEM: Borrar datos de sql
+    	        JMenuItem deleteItem = new JMenuItem("Erase data");
+    	        deleteItem.setActionCommand("delete");
+    	        deleteItem.addActionListener(this);
+    	        menu.add(deleteItem);
         }
         else if (MainFrame.idioma.equals ("Euskera")) {
-    		JMenuItem menuItem = new JMenuItem("Lehio berria");
-            menuItem.setActionCommand("new");
-            menuItem.addActionListener(this);
-            menu.add(menuItem);
-     
             //Set up the second menu item.
-            menuItem = new JMenuItem("Irten");
+            JMenuItem menuItem = new JMenuItem("Irten");
             menuItem.setActionCommand("quit");
             menuItem.addActionListener(this);
-            menu.add(menuItem);	
+            menu.add(menuItem);
+            menu.addSeparator();
+	        
+	        //Set up tercer menu item
+	        JMenu menuAgregar = new JMenu("Datuak Sartu");
+	        menu.add(menuAgregar);
+	        
+	        JMenuItem menuItemSedes  = new JMenuItem("Egoitzen Taula");
+	        menuItemSedes.setActionCommand("sedes");
+	        menuItemSedes.addActionListener(this);
+	        menuAgregar.add(menuItemSedes);
+	        
+	        // ITEM: Borrar datos de sql
+	        JMenuItem deleteItem = new JMenuItem("Datuak ezabatu");
+	        deleteItem.setActionCommand("delete");
+	        deleteItem.addActionListener(this);
+	        menu.add(deleteItem);
         }
-        
-        
-        
-     // ITEM: Borrar datos de sql
-        JMenuItem deleteItem = new JMenuItem("Borrar datos de la BD");
-        deleteItem.setActionCommand("delete");
-        deleteItem.addActionListener(this);
-        menu.add(deleteItem);
-
-        
         return menuBar;
     }
     
@@ -116,9 +134,23 @@ public class MainFrame extends JFrame implements ActionListener {
         deletePanel.setLayout(null);
         deletePanel.setBounds(500, 30, 260, 120); // posición y tamaño del recuadro
         deletePanel.setBackground(Color.WHITE);
-        deletePanel.setBorder(BorderFactory.createTitledBorder("Eliminar datos BD"));
-
+        if (idioma.equals("Español")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Eliminar datos BD"));
+        } else if (idioma.equals("English")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Erase data DB"));
+        } else if (idioma.equals("Euskera")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Datuak ezabatu DB"));
+        }
+        
+        
         deleteButton = new JButton("Eliminar datos BD");
+        if (idioma.equals("Español")) {
+        	deleteButton.setText("Eliminar datos BD");
+        } else if (idioma.equals("English")) {
+        	deleteButton.setText("Erase data DB");
+        } else if (idioma.equals("Euskera")) {
+        	deleteButton.setText("Datuak ezabatu DB");
+        }
         deleteButton.setBounds(20, 40, 220, 40);
         deleteButton.setFont(new Font("Consolas", Font.BOLD, 14));
         deleteButton.setActionCommand("delete"); // reutilizar el mismo comando
@@ -130,20 +162,17 @@ public class MainFrame extends JFrame implements ActionListener {
  
     //React to menu selections.
     public void actionPerformed(ActionEvent e) {
-        if ("new".equals(e.getActionCommand())) { //new
-            createFrame();
-            
-        } else if (e.getActionCommand().equals("delete")) {
+        if (e.getActionCommand().equals("delete")) {
             Database.eliminarDatos();
+        } else if (e.getActionCommand().equals("sedes")) {
+        	createSedesFrame();
         } else { //quit
             quit();
-   
         }
-    }
+    }  
     
-    //Create a new internal frame.
-    private void createFrame() {
-        InternalFrame frame = new InternalFrame();
+    private void createSedesFrame() {
+    	InternalFrameSedes frame = new InternalFrameSedes();
         frame.setVisible(true); //necessary as of 1.3
         desktop.add(frame);
         frame.setBackground(Color.white);
@@ -157,13 +186,11 @@ public class MainFrame extends JFrame implements ActionListener {
             frame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
     }
-
- 
+    
     //Quit the application.
     private void quit() {
         System.exit(0);
     }
-    
  
     /**
      * Create the GUI and show it.
@@ -182,5 +209,4 @@ public class MainFrame extends JFrame implements ActionListener {
         frame.setUndecorated(true);
         frame.setVisible(true);
     }
-    
 }
