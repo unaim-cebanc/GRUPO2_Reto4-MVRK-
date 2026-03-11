@@ -1,34 +1,41 @@
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-
-import java.awt.event.*;
+import javax.swing.BorderFactory;import java.awt.event.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements ActionListener {
-
-    JDesktopPane desktop;
-    JButton exportButton;      // BOTÓN DEL RECUADRO
-    JPanel exportPanel;        // RECUADRO
+public static String idioma = InicioFrame.getIdioma();
+private JDesktopPane desktop;
+JButton deleteButton;      // BOTÓN DEL RECUADRO
+JPanel deletePanel;        // RECUADRO
 
     public MainFrame() {
-        super("InternalFrameDemo");
-
+ 
+    	
+    	
+    	//Make the big window be indented 50 pixels from each edge
+        //of the screen.
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
-                screenSize.width - inset*2,
-                screenSize.height - inset*2);
-
-        // DesktopPane
-        desktop = new JDesktopPane();
+                  screenSize.width  - inset*2,
+                  screenSize.height - inset*2);
+ 
+        //Set up the GUI.
+        desktop = new JDesktopPane(); //a specialized layered pane
+        setContentPane(desktop);
+        setJMenuBar(createMenuBar());
+     
+        // Recuadro con botón de exportar
+        createDeletePanel();
+        
+        //Make dragging a little faster but perhaps uglier.
         desktop.setBackground(SystemColor.activeCaption);
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         desktop.setLayout(null); // para colocar el recuadro por coordenadas
@@ -42,41 +49,163 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     private JMenuBar createMenuBar() {
-
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBorderPainted(false);
-
+        
+    	JMenuBar menuBar = new JMenuBar();
+    	menuBar.setBorderPainted(false);
+        
+    	//Set up barra menu.
         JMenu menu = new JMenu("Menu");
         menuBar.add(menu);
-
-        JMenuItem menuItem = new JMenuItem("Nueva Ventana");
-        menuItem.setActionCommand("new");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Cerrar");
-        menuItem.setActionCommand("quit");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-
-        // ITEM: EXPORTAR BD A CSV
+        
+ 
+        //Set up primer menu item.
+        if (MainFrame.idioma.equals ("Español")) {
+	        //Set up segundo menu item.
+	        JMenuItem menuItem = new JMenuItem("Cerrar");
+	        menuItem.setActionCommand("quit");
+	        menuItem.addActionListener(this);
+	        menu.add(menuItem);
+	        menu.addSeparator();
+	        
+	        //Set up tercer menu item
+	        JMenu menuAgregar = new JMenu("Agregar Datos");
+	        menu.add(menuAgregar);
+	        
+	        JMenuItem menuItemSedes  = new JMenuItem("Tabla Sedes");
+	        menuItemSedes.setActionCommand("sedes");
+	        menuItemSedes.addActionListener(this);
+	        menuAgregar.add(menuItemSedes);
+	        
+	        // ITEM: Borrar datos de sql
+	        JMenuItem deleteItem = new JMenuItem("Borrar datos");
+	        deleteItem.setActionCommand("delete");
+	        deleteItem.addActionListener(this);
+	        menu.add(deleteItem);
+          
+          // ITEM: EXPORTAR BD A CSV
         JMenuItem exportItem = new JMenuItem("Exportar BD a CSV");
         exportItem.setActionCommand("export");
         exportItem.addActionListener(this);
         menu.add(exportItem);
-
+	        
+        }
+        else if (MainFrame.idioma.equals ("English")) {
+                //Set up the second menu item.
+                JMenuItem menuItem = new JMenuItem("Exit");
+                menuItem.setActionCommand("quit");
+                menuItem.addActionListener(this);
+                menu.add(menuItem);	
+                menu.addSeparator();
+    	        
+    	        //Set up tercer menu item
+    	        JMenu menuAgregar = new JMenu("Add Data");
+    	        menu.add(menuAgregar);
+    	        
+    	        JMenuItem menuItemSedes  = new JMenuItem("Headquarters Table");
+    	        menuItemSedes.setActionCommand("sedes");
+    	        menuItemSedes.addActionListener(this);
+    	        menuAgregar.add(menuItemSedes);
+    	        
+    	        // ITEM: Borrar datos de sql
+    	        JMenuItem deleteItem = new JMenuItem("Erase data");
+    	        deleteItem.setActionCommand("delete");
+    	        deleteItem.addActionListener(this);
+    	        menu.add(deleteItem);
+          
+              // ITEM: EXPORTAR BD A CSV
+              JMenuItem exportItem = new JMenuItem("Export DB to CSV");
+              exportItem.setActionCommand("export");
+              exportItem.addActionListener(this);
+              menu.add(exportItem);
+        }
+        else if (MainFrame.idioma.equals ("Euskera")) {
+            //Set up the second menu item.
+            JMenuItem menuItem = new JMenuItem("Irten");
+            menuItem.setActionCommand("quit");
+            menuItem.addActionListener(this);
+            menu.add(menuItem);
+            menu.addSeparator();
+	        
+	        //Set up tercer menu item
+	        JMenu menuAgregar = new JMenu("Datuak Sartu");
+	        menu.add(menuAgregar);
+	        
+	        JMenuItem menuItemSedes  = new JMenuItem("Egoitzen Taula");
+	        menuItemSedes.setActionCommand("sedes");
+	        menuItemSedes.addActionListener(this);
+	        menuAgregar.add(menuItemSedes);
+	        
+	        // ITEM: Borrar datos de sql
+	        JMenuItem deleteItem = new JMenuItem("Datuak ezabatu");
+	        deleteItem.setActionCommand("delete");
+	        deleteItem.addActionListener(this);
+	        menu.add(deleteItem);
+          
+          // ITEM: EXPORTAR BD A CSV
+          JMenuItem exportItem = new JMenuItem("Esportatu DB CSVra");
+          exportItem.setActionCommand("export");
+          exportItem.addActionListener(this);
+          menu.add(exportItem);
+        }
         return menuBar;
     }
+    
+    
+ // Recuadro con botón en la pantalla principal
+    private void createDeletePanel() {
+        deletePanel = new JPanel();
+        deletePanel.setLayout(null);
+        deletePanel.setBounds(500, 30, 260, 120); // posición y tamaño del recuadro
+        deletePanel.setBackground(Color.WHITE);
+        if (idioma.equals("Español")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Eliminar datos BD"));
+        } else if (idioma.equals("English")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Erase data DB"));
+        } else if (idioma.equals("Euskera")) {
+        	deletePanel.setBorder(BorderFactory.createTitledBorder("Datuak ezabatu DB"));
+        }
+        
+        
+        deleteButton = new JButton("Eliminar datos BD");
+        if (idioma.equals("Español")) {
+        	deleteButton.setText("Eliminar datos BD");
+        } else if (idioma.equals("English")) {
+        	deleteButton.setText("Erase data DB");
+        } else if (idioma.equals("Euskera")) {
+        	deleteButton.setText("Datuak ezabatu DB");
+        }
+        deleteButton.setBounds(20, 40, 220, 40);
+        deleteButton.setFont(new Font("Consolas", Font.BOLD, 14));
+        deleteButton.setActionCommand("delete"); // reutilizar el mismo comando
+        deleteButton.addActionListener(this);
 
+        deletePanel.add(deleteButton);
+        desktop.add(deletePanel);
+    }
+ 
     // Recuadro con botón en la pantalla principal
     private void createExportPanel() {
         exportPanel = new JPanel();
         exportPanel.setLayout(null);
         exportPanel.setBounds(30, 30, 260, 120); // posición y tamaño del recuadro
         exportPanel.setBackground(Color.WHITE);
-        exportPanel.setBorder(BorderFactory.createTitledBorder("Herramientas BD"));
+        if (InicioFrame.getIdioma().equals("Español")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("Herramientas BD"));
+        } else if (InicioFrame.getIdioma().equals("English")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("DB Tools"));
+        } else if (InicioFrame.getIdioma().equals("Euskera")) {
+          exportPanel.setBorder(BorderFactory.createTitledBorder("DB Tresnak"));
+        }
 
-        exportButton = new JButton("Exportar BD a CSV");
+        exportButton = new JButton();  
+        if (InicioFrame.getIdioma().equals("Español")) {
+          exportButton.setText("Exportar BD a CSV");
+        } else if (InicioFrame.getIdioma.equals("English")){
+          exportButton.setText("Export DB to CSV")
+        } else if (InicioFrame.getIdioma().equals("Euskera")) {
+          exportButton.setText("Esportatu DB CSVra")
+        }
+        
         exportButton.setBounds(20, 40, 220, 40);
         exportButton.setFont(new Font("Consolas", Font.BOLD, 14));
         exportButton.setActionCommand("export"); // reutilizamos el mismo comando
@@ -85,23 +214,23 @@ public class MainFrame extends JFrame implements ActionListener {
         exportPanel.add(exportButton);
         desktop.add(exportPanel);
     }
-
-    //React to menu selections and button
+    
+    //React to menu selections.
     public void actionPerformed(ActionEvent e) {
-        String cmd = e.getActionCommand();
-        if ("new".equals(cmd)) {
-            createFrame();
-        } else if ("quit".equals(cmd)) {
-            quit();
-        } else if ("export".equals(cmd)) {
+        if (e.getActionCommand().equals("delete")) {
+            Database.eliminarDatos();
+        } else if (e.getActionCommand().equals("sedes")) {
+        	createSedesFrame();
+        } else if (e.getActionCommand().equals("export")) {
             exportarBD();
-        }
-    }
-
-    //Create a new internal frame.
-    private void createFrame() {
-        InternalFrame frame = new InternalFrame();
-        frame.setVisible(true);
+        } else { //quit
+            quit();
+        } 
+    }  
+    
+    private void createSedesFrame() {
+    	InternalFrameSedes frame = new InternalFrameSedes();
+        frame.setVisible(true); //necessary as of 1.3
         desktop.add(frame);
         frame.setBackground(Color.white);
         frame.addInternalFrameListener(new InternalFrameAdapter() {
@@ -114,7 +243,7 @@ public class MainFrame extends JFrame implements ActionListener {
             frame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
     }
-
+    
     //Quit the application.
     private void quit() {
         System.exit(0);
