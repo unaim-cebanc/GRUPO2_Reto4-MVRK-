@@ -18,31 +18,31 @@ public class InternalFrameEmisiones extends InternalFrame {
 
         JLabel LabelIdSede = new JLabel("id_sede");
         LabelIdSede.setBounds(50, 150, 180, 30);
-        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
         JLabel LabelTipoEmision = new JLabel("tipo_emision");
         LabelTipoEmision.setBounds(50, 200, 180, 30);
-        LabelTipoEmision.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelTipoEmision.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelTipoEmision.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelTipoEmision);
 
         JLabel LabelCantidad = new JLabel("cantidad_toneladas");
         LabelCantidad.setBounds(50, 250, 180, 30);
-        LabelCantidad.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelCantidad.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelCantidad);
 
         JLabel LabelFuente = new JLabel("fuente");
         LabelFuente.setBounds(50, 300, 180, 30);
-        LabelFuente.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelFuente.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFuente.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFuente);
 
         JLabel LabelFecha = new JLabel("fecha");
         LabelFecha.setBounds(50, 350, 180, 30);
-        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFecha.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFecha);
 

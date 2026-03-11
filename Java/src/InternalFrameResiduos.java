@@ -19,31 +19,31 @@ public class InternalFrameResiduos extends InternalFrame {
 
         JLabel LabelIdSede = new JLabel("id_sede");
         LabelIdSede.setBounds(50, 150, 150, 30);
-        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
         JLabel LabelTipoResiduo = new JLabel("tipo_residuos");
         LabelTipoResiduo.setBounds(50, 200, 150, 30);
-        LabelTipoResiduo.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelTipoResiduo.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelTipoResiduo.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelTipoResiduo);
 
         JLabel LabelCantidad = new JLabel("cantidad_kg");
         LabelCantidad.setBounds(50, 250, 150, 30);
-        LabelCantidad.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelCantidad.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelCantidad);
 
         JLabel LabelMetodo = new JLabel("metodo_gestión");
         LabelMetodo.setBounds(50, 300, 150, 30);
-        LabelMetodo.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelMetodo.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelMetodo.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelMetodo);
 
         JLabel LabelFecha = new JLabel("fecha");
         LabelFecha.setBounds(50, 350, 150, 30);
-        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFecha.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFecha);
 

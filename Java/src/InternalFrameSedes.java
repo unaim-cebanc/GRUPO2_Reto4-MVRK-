@@ -19,7 +19,7 @@ public class InternalFrameSedes extends InternalFrame {
 		JLabel LabelNombre = new JLabel();
 		LabelNombre.setText("nombre_sede");
 		LabelNombre.setBounds(50, 100, 150, 30);
-		LabelNombre.setFont(new Font("Consolas", Font.BOLD, 20));
+		LabelNombre.setFont(new Font("Consolas", Font.BOLD, 15));
 		LabelNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		LabelNombre.setVerticalAlignment(SwingConstants.CENTER);
 		contenido.add(LabelNombre);
@@ -27,14 +27,14 @@ public class InternalFrameSedes extends InternalFrame {
 		JLabel LabelCiudad = new JLabel();
 		LabelCiudad.setText("ciudad");
 		LabelCiudad.setBounds(50, 150, 150, 30);
-		LabelCiudad.setFont(new Font("Consolas", Font.BOLD, 20));
+		LabelCiudad.setFont(new Font("Consolas", Font.BOLD, 15));
 		LabelCiudad.setHorizontalAlignment(SwingConstants.RIGHT);
 		contenido.add(LabelCiudad);
 		
 		JLabel LabelSuperficie = new JLabel();
 		LabelSuperficie.setText("superficie");
 		LabelSuperficie.setBounds(50, 200, 150, 30);
-		LabelSuperficie.setFont(new Font("Consolas", Font.BOLD, 20));
+		LabelSuperficie.setFont(new Font("Consolas", Font.BOLD, 15));
 		LabelSuperficie.setHorizontalAlignment(SwingConstants.RIGHT);
 		contenido.add(LabelSuperficie);
 		

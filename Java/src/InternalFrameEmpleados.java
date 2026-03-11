@@ -18,31 +18,31 @@ public class InternalFrameEmpleados extends InternalFrame {
 
         JLabel LabelIdGerente = new JLabel("id_empleado_gerente");
         LabelIdGerente.setBounds(50, 150, 180, 30);
-        LabelIdGerente.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdGerente.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdGerente.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdGerente);
 
         JLabel LabelIdSede = new JLabel("id_sede");
         LabelIdSede.setBounds(50, 200, 180, 30);
-        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
         JLabel LabelNombre = new JLabel("nombre");
         LabelNombre.setBounds(50, 250, 180, 30);
-        LabelNombre.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelNombre.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelNombre);
 
         JLabel LabelApellido = new JLabel("apellido");
         LabelApellido.setBounds(50, 300, 180, 30);
-        LabelApellido.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelApellido.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelApellido.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelApellido);
 
         JLabel LabelFecha = new JLabel("fecha_contrato");
         LabelFecha.setBounds(50, 350, 180, 30);
-        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFecha.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFecha);
 

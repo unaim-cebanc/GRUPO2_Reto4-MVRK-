@@ -1,12 +1,19 @@
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.swing.BorderFactory;import java.awt.event.*;
+import javax.xml.crypto.Data;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements ActionListener {
@@ -19,33 +26,32 @@ JPanel deletePanel;        // RECUADRO
  
     	
     	
-    	//Make the big window be indented 50 pixels from each edge
-        //of the screen.
+    	//Crea los InternalFrame a un offset de 50 pixeles veritcales y horizontales.
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
                   screenSize.width  - inset*2,
                   screenSize.height - inset*2);
  
-        //Set up the GUI.
+        //Prepara la GUI.
         desktop = new JDesktopPane(); //a specialized layered pane
         setContentPane(desktop);
         setJMenuBar(createMenuBar());
      
-        // Recuadro con botón de exportar
+        // Recuadros con botones
         createDeletePanel();
+        createAddPanel();
+        createExportPanel();
         
-        //Make dragging a little faster but perhaps uglier.
+        //Establece el efecto de arrastre de las ventanas.
         desktop.setBackground(SystemColor.activeCaption);
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        
         desktop.setLayout(null); // para colocar el recuadro por coordenadas
         setContentPane(desktop);
 
         // Barra de menú
         setJMenuBar(createMenuBar());
-
-        // Recuadro con botón de exportar
-        createExportPanel();
     }
 
     private JMenuBar createMenuBar() {
@@ -71,53 +77,132 @@ JPanel deletePanel;        // RECUADRO
 	        JMenu menuAgregar = new JMenu("Agregar Datos");
 	        menu.add(menuAgregar);
 	        
-	        JMenuItem menuItemSedes  = new JMenuItem("Tabla Sedes");
-	        menuItemSedes.setActionCommand("sedes");
-	        menuItemSedes.addActionListener(this);
-	        menuAgregar.add(menuItemSedes);
+	        if (Database.getAdmin()) {
+	        	JMenuItem menuItemAgregar  = new JMenuItem("Tabla Sedes");
+		        menuItemAgregar.setActionCommand("sedes");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+		        
+		        menuItemAgregar  = new JMenuItem("Tabla Usuarios");
+		        menuItemAgregar.setActionCommand("usuarios");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+		        
+		        menuItemAgregar  = new JMenuItem("Tabla Empleados");
+		        menuItemAgregar.setActionCommand("empleados");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+	        }
+	        
+	        JMenuItem menuItemAgregar  = new JMenuItem("Tabla Residuos");
+	        menuItemAgregar.setActionCommand("residuos");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Tabla Consumo Energia");
+	        menuItemAgregar.setActionCommand("energia");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Tabla Emisiones");
+	        menuItemAgregar.setActionCommand("emisiones");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Tabla Servidores");
+	        menuItemAgregar.setActionCommand("servidores");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Tabla Sistemas Refrigeracion");
+	        menuItemAgregar.setActionCommand("refrigeracion");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
 	        
 	        // ITEM: Borrar datos de sql
-	        JMenuItem deleteItem = new JMenuItem("Borrar datos");
-	        deleteItem.setActionCommand("delete");
-	        deleteItem.addActionListener(this);
-	        menu.add(deleteItem);
+	        if (Database.getAdmin()) {
+	        	JMenuItem deleteItem = new JMenuItem("Borrar datos");
+		        deleteItem.setActionCommand("delete");
+		        deleteItem.addActionListener(this);
+		        menu.add(deleteItem);
+	        }
           
-          // ITEM: EXPORTAR BD A CSV
-        JMenuItem exportItem = new JMenuItem("Exportar BD a CSV");
-        exportItem.setActionCommand("export");
-        exportItem.addActionListener(this);
-        menu.add(exportItem);
+	        // ITEM: EXPORTAR BD A CSV
+	        JMenuItem exportItem = new JMenuItem("Exportar BD a CSV");
+	        exportItem.setActionCommand("export");
+	        exportItem.addActionListener(this);
+	        menu.add(exportItem);
 	        
         }
         else if (MainFrame.idioma.equals ("English")) {
-                //Set up the second menu item.
-                JMenuItem menuItem = new JMenuItem("Exit");
-                menuItem.setActionCommand("quit");
-                menuItem.addActionListener(this);
-                menu.add(menuItem);	
-                menu.addSeparator();
+            //Set up the second menu item.
+            JMenuItem menuItem = new JMenuItem("Exit");
+            menuItem.setActionCommand("quit");
+            menuItem.addActionListener(this);
+            menu.add(menuItem);	
+            menu.addSeparator();
     	        
-    	        //Set up tercer menu item
-    	        JMenu menuAgregar = new JMenu("Add Data");
-    	        menu.add(menuAgregar);
+            //Set up tercer menu item
+            JMenu menuAgregar = new JMenu("Add Data");
+            menu.add(menuAgregar);
     	        
-    	        JMenuItem menuItemSedes  = new JMenuItem("Headquarters Table");
-    	        menuItemSedes.setActionCommand("sedes");
-    	        menuItemSedes.addActionListener(this);
-    	        menuAgregar.add(menuItemSedes);
+            if (Database.getAdmin()) {
+            	JMenuItem menuItemAgregar  = new JMenuItem("Headquarters Table");
+                menuItemAgregar.setActionCommand("sedes");
+                menuItemAgregar.addActionListener(this);
+                menuAgregar.add(menuItemAgregar);
+                
+                menuItemAgregar  = new JMenuItem("Users Table");
+                menuItemAgregar.setActionCommand("usuarios");
+                menuItemAgregar.addActionListener(this);
+                menuAgregar.add(menuItemAgregar);
+                
+                menuItemAgregar  = new JMenuItem("Employee Table");
+                menuItemAgregar.setActionCommand("empleados");
+                menuItemAgregar.addActionListener(this);
+                menuAgregar.add(menuItemAgregar);
+            }
+            
+            JMenuItem menuItemAgregar  = new JMenuItem("Residues Table");
+            menuItemAgregar.setActionCommand("residuos");
+            menuItemAgregar.addActionListener(this);
+            menuAgregar.add(menuItemAgregar);
+    	         
+            menuItemAgregar  = new JMenuItem("Energy Consumption Table");
+            menuItemAgregar.setActionCommand("energia");
+            menuItemAgregar.addActionListener(this);
+            menuAgregar.add(menuItemAgregar);
     	        
-    	        // ITEM: Borrar datos de sql
-    	        JMenuItem deleteItem = new JMenuItem("Erase data");
-    	        deleteItem.setActionCommand("delete");
-    	        deleteItem.addActionListener(this);
-    	        menu.add(deleteItem);
-          
-              // ITEM: EXPORTAR BD A CSV
-              JMenuItem exportItem = new JMenuItem("Export DB to CSV");
-              exportItem.setActionCommand("export");
-              exportItem.addActionListener(this);
-              menu.add(exportItem);
+            menuItemAgregar  = new JMenuItem("Emissions Table");
+            menuItemAgregar.setActionCommand("emisiones");
+            menuItemAgregar.addActionListener(this);
+            menuAgregar.add(menuItemAgregar);
+    	        
+            menuItemAgregar  = new JMenuItem("Servers Table");
+            menuItemAgregar.setActionCommand("servidores");
+            menuItemAgregar.addActionListener(this);
+            menuAgregar.add(menuItemAgregar);
+    	        
+            menuItemAgregar  = new JMenuItem("Cooling Systems Table");
+            menuItemAgregar.setActionCommand("refrigeracion");
+            menuItemAgregar.addActionListener(this);
+            menuAgregar.add(menuItemAgregar);
+    	        
+            if (Database.getAdmin()) {
+            	// Borrar datos de sql
+                JMenuItem deleteItem = new JMenuItem("Erase data");
+                deleteItem.setActionCommand("delete");
+                deleteItem.addActionListener(this);
+                menu.add(deleteItem);
+            }
+            
+            // EXPORTAR BD A CSV
+            JMenuItem exportItem = new JMenuItem("Export DB to CSV");
+            exportItem.setActionCommand("export");
+            exportItem.addActionListener(this);
+            menu.add(exportItem);
         }
+        
         else if (MainFrame.idioma.equals ("Euskera")) {
             //Set up the second menu item.
             JMenuItem menuItem = new JMenuItem("Irten");
@@ -130,22 +215,61 @@ JPanel deletePanel;        // RECUADRO
 	        JMenu menuAgregar = new JMenu("Datuak Sartu");
 	        menu.add(menuAgregar);
 	        
-	        JMenuItem menuItemSedes  = new JMenuItem("Egoitzen Taula");
-	        menuItemSedes.setActionCommand("sedes");
-	        menuItemSedes.addActionListener(this);
-	        menuAgregar.add(menuItemSedes);
+	        if (Database.getAdmin()) {
+	        	JMenuItem menuItemAgregar  = new JMenuItem("Egoitzen Taula");
+		        menuItemAgregar.setActionCommand("sedes");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+		        
+		        menuItemAgregar  = new JMenuItem("Erabiltzaileen Taula");
+		        menuItemAgregar.setActionCommand("usuarios");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+		        
+		        menuItemAgregar  = new JMenuItem("Langile Taula");
+		        menuItemAgregar.setActionCommand("empleados");
+		        menuItemAgregar.addActionListener(this);
+		        menuAgregar.add(menuItemAgregar);
+	        }
 	        
-	        // ITEM: Borrar datos de sql
-	        JMenuItem deleteItem = new JMenuItem("Datuak ezabatu");
-	        deleteItem.setActionCommand("delete");
-	        deleteItem.addActionListener(this);
-	        menu.add(deleteItem);
-          
-          // ITEM: EXPORTAR BD A CSV
-          JMenuItem exportItem = new JMenuItem("Esportatu DB CSVra");
-          exportItem.setActionCommand("export");
-          exportItem.addActionListener(this);
-          menu.add(exportItem);
+	        JMenuItem menuItemAgregar  = new JMenuItem("Hondakin Taula");
+	        menuItemAgregar.setActionCommand("residuos");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Energia-kontsumo Taula");
+	        menuItemAgregar.setActionCommand("energia");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Isurtzeen Taula");
+	        menuItemAgregar.setActionCommand("emisiones");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Zerbitzari Taula");
+	        menuItemAgregar.setActionCommand("servidores");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        menuItemAgregar  = new JMenuItem("Hozte-sistema Taula");
+	        menuItemAgregar.setActionCommand("refrigeracion");
+	        menuItemAgregar.addActionListener(this);
+	        menuAgregar.add(menuItemAgregar);
+	        
+	        if (Database.getAdmin()) {
+	        	// ITEM: Borrar datos de sql
+		        JMenuItem deleteItem = new JMenuItem("Datuak ezabatu");
+		        deleteItem.setActionCommand("delete");
+		        deleteItem.addActionListener(this);
+		        menu.add(deleteItem);
+	        }
+
+	        // ITEM: EXPORTAR BD A CSV
+	        JMenuItem exportItem = new JMenuItem("Esportatu DB CSVra");
+	        exportItem.setActionCommand("export");
+	        exportItem.addActionListener(this);
+	        menu.add(exportItem);
         }
         return menuBar;
     }
@@ -165,46 +289,6 @@ JPanel deletePanel;        // RECUADRO
         	deletePanel.setBorder(BorderFactory.createTitledBorder("Datuak ezabatu DB"));
         }
         
-        JMenuItem menuItemAgregar  = new JMenuItem("Tabla Sedes");
-        menuItemAgregar.setActionCommand("sedes");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Usuarios");
-        menuItemAgregar.setActionCommand("usuarios");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Residuos");
-        menuItemAgregar.setActionCommand("residuos");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Empleados");
-        menuItemAgregar.setActionCommand("empleados");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Consumo Energia");
-        menuItemAgregar.setActionCommand("energia");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Emisiones");
-        menuItemAgregar.setActionCommand("emisiones");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Servidores");
-        menuItemAgregar.setActionCommand("servidores");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
-        menuItemAgregar  = new JMenuItem("Tabla Sistema Refrigeracio");
-        menuItemAgregar.setActionCommand("refrigeracion");
-        menuItemAgregar.addActionListener(this);
-        menuAgregar.add(menuItemAgregar);
-        
         deleteButton = new JButton("Eliminar datos BD");
         if (idioma.equals("Español")) {
         	deleteButton.setText("Eliminar datos BD");
@@ -217,14 +301,46 @@ JPanel deletePanel;        // RECUADRO
         deleteButton.setFont(new Font("Consolas", Font.BOLD, 14));
         deleteButton.setActionCommand("delete"); // reutilizar el mismo comando
         deleteButton.addActionListener(this);
+        
+        if (!Database.getAdmin()) {
+        	deleteButton.setEnabled(false);
+        }
 
         deletePanel.add(deleteButton);
         desktop.add(deletePanel);
     }
- 
+    private void createAddPanel() {
+        JPanel addPanel = new JPanel();
+        addPanel.setLayout(null);
+        addPanel.setBounds(970, 30, 260, 120); // posición y tamaño del recuadro
+        addPanel.setBackground(Color.WHITE);
+        if (idioma.equals("Español")) {
+        	addPanel.setBorder(BorderFactory.createTitledBorder("Añadir datos BD"));
+        } else if (idioma.equals("English")) {
+        	addPanel.setBorder(BorderFactory.createTitledBorder("Add data DB"));
+        } else if (idioma.equals("Euskera")) {
+        	addPanel.setBorder(BorderFactory.createTitledBorder("Datuak sartu DB"));
+        }
+        
+        JButton addButton = new JButton("Eliminar datos BD");
+        if (idioma.equals("Español")) {
+        	addButton.setText("Añadir datos BD");
+        } else if (idioma.equals("English")) {
+        	addButton.setText("Add data DB");
+        } else if (idioma.equals("Euskera")) {
+        	addButton.setText("Datuak sartu DB");
+        }
+        addButton.setBounds(20, 40, 220, 40);
+        addButton.setFont(new Font("Consolas", Font.BOLD, 14));
+        addButton.setActionCommand("añadir"); // reutilizar el mismo comando
+        addButton.addActionListener(this);
+
+        addPanel.add(addButton);
+        desktop.add(addPanel);
+    }
     // Recuadro con botón en la pantalla principal
     private void createExportPanel() {
-        exportPanel = new JPanel();
+        JPanel exportPanel = new JPanel();
         exportPanel.setLayout(null);
         exportPanel.setBounds(30, 30, 260, 120); // posición y tamaño del recuadro
         exportPanel.setBackground(Color.WHITE);
@@ -236,13 +352,13 @@ JPanel deletePanel;        // RECUADRO
           exportPanel.setBorder(BorderFactory.createTitledBorder("DB Tresnak"));
         }
 
-        exportButton = new JButton();  
+        JButton exportButton = new JButton();  
         if (InicioFrame.getIdioma().equals("Español")) {
           exportButton.setText("Exportar BD a CSV");
-        } else if (InicioFrame.getIdioma.equals("English")){
-          exportButton.setText("Export DB to CSV")
+        } else if (InicioFrame.getIdioma().equals("English")){
+          exportButton.setText("Export DB to CSV");
         } else if (InicioFrame.getIdioma().equals("Euskera")) {
-          exportButton.setText("Esportatu DB CSVra")
+          exportButton.setText("Esportatu DB CSVra");
         }
         
         exportButton.setBounds(20, 40, 220, 40);
@@ -258,6 +374,8 @@ JPanel deletePanel;        // RECUADRO
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("delete")) {
             Database.eliminarDatos();
+        } else if (e.getActionCommand().equals("añadir")) {
+        	elegirTabla();
         } else if (e.getActionCommand().equals("sedes")) {
         	createSedesFrame();
         } else if (e.getActionCommand().equals("usuarios")) {
@@ -439,6 +557,45 @@ JPanel deletePanel;        // RECUADRO
         }
     }
 
+    
+    private void elegirTabla() {
+    	Object[] opciones = {"Sedes",
+    			"Consumo de Energia",
+    			"Emisiones",
+    			"Empleados",
+    			"Sistemas de Refrigeracion",
+    			"Residuos",
+    			"Salas Servidores",
+    			"Usuarios"};
+    	
+    	if (!Database.getAdmin()) {
+    		ArrayList<Object> listaOpciones = new ArrayList<>(Arrays.asList(opciones));
+    		listaOpciones.remove("Sedes");
+    		listaOpciones.remove("Usuarios");
+    		listaOpciones.remove("Empleados");
+    		opciones = listaOpciones.toArray();
+    	}
+    	
+    	Object elegirOpcion = JOptionPane.showInputDialog(desktop, "Elige una tabla", "Atencion", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+    	
+    	if (String.valueOf(elegirOpcion).equals("Sedes")) {
+    		createSedesFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Consumo de Energia")) {
+    		createConsumoEnergiaFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Emisiones")) {
+    		createEmisionesFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Empleados")) {
+    		createEmpleadosFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Sistemas de Refrigeracion")) {
+    		createRefrigeracionFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Residuos")) {
+    		createResiduosFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Salas Servidores")) {
+    		createServidoresFrame();
+    	} else if (String.valueOf(elegirOpcion).equals("Usuarios")) {
+    		createUsuariosFrame();
+    	}
+    }
     /**
      * Create the GUI and show it.
      */

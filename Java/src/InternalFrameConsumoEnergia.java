@@ -18,31 +18,31 @@ public class InternalFrameConsumoEnergia extends InternalFrame {
 
         JLabel LabelIdSede = new JLabel("id_sede");
         LabelIdSede.setBounds(50, 150, 180, 30);
-        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
         JLabel LabelKwhServidores = new JLabel("kwh_servidores");
         LabelKwhServidores.setBounds(50, 200, 180, 30);
-        LabelKwhServidores.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelKwhServidores.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelKwhServidores.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelKwhServidores);
 
         JLabel LabelKwhRefrigeracion = new JLabel("kwh_refrigeracion");
         LabelKwhRefrigeracion.setBounds(50, 250, 180, 30);
-        LabelKwhRefrigeracion.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelKwhRefrigeracion.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelKwhRefrigeracion.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelKwhRefrigeracion);
 
         JLabel LabelKwhTotales = new JLabel("kwh_totales");
         LabelKwhTotales.setBounds(50, 300, 180, 30);
-        LabelKwhTotales.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelKwhTotales.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelKwhTotales.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelKwhTotales);
 
         JLabel LabelFecha = new JLabel("fecha");
         LabelFecha.setBounds(50, 350, 180, 30);
-        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelFecha.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFecha.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFecha);
 

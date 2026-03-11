@@ -18,25 +18,25 @@ public class InternalFrameRefrigeracion extends InternalFrame {
 
         JLabel LabelIdSala = new JLabel("id_sala_servidores");
         LabelIdSala.setBounds(50, 150, 200, 30);
-        LabelIdSala.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSala.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSala.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSala);
 
         JLabel LabelTipoSistema = new JLabel("tipo_sistema");
         LabelTipoSistema.setBounds(50, 200, 200, 30);
-        LabelTipoSistema.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelTipoSistema.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelTipoSistema.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelTipoSistema);
 
         JLabel LabelEficiencia = new JLabel("eficiencia_energetica");
         LabelEficiencia.setBounds(50, 250, 200, 30);
-        LabelEficiencia.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelEficiencia.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelEficiencia.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelEficiencia);
 
         JLabel LabelRefrigerante = new JLabel("refrigerante");
         LabelRefrigerante.setBounds(50, 300, 200, 30);
-        LabelRefrigerante.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelRefrigerante.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelRefrigerante.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelRefrigerante);
 

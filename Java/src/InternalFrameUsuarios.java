@@ -20,7 +20,7 @@ public class InternalFrameUsuarios extends InternalFrame {
 		JLabel Labeladmin = new JLabel();
 		Labeladmin.setText("id_usuario_admin");
 		Labeladmin.setBounds(50, 100, 150, 30);
-		Labeladmin.setFont(new Font("Consolas", Font.BOLD, 20));
+		Labeladmin.setFont(new Font("Consolas", Font.BOLD, 15));
 		Labeladmin.setHorizontalAlignment(SwingConstants.RIGHT);
 		Labeladmin.setVerticalAlignment(SwingConstants.CENTER);
 		contenido.add(Labeladmin);
@@ -28,29 +28,29 @@ public class InternalFrameUsuarios extends InternalFrame {
 		JLabel Labelnomusuario = new JLabel();
 		Labelnomusuario.setText("nombre_usuario");
 		Labelnomusuario.setBounds(50, 150, 150, 30);
-		Labelnomusuario.setFont(new Font("Consolas", Font.BOLD, 20));
+		Labelnomusuario.setFont(new Font("Consolas", Font.BOLD, 15));
 		Labelnomusuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		contenido.add(Labelnomusuario);
 		
 		JLabel Labelcontraseña = new JLabel();
 		Labelcontraseña.setText("contraseña");
 		Labelcontraseña.setBounds(50, 200, 150, 30);
-		Labelcontraseña.setFont(new Font("Consolas", Font.BOLD, 20));
+		Labelcontraseña.setFont(new Font("Consolas", Font.BOLD, 15));
 		Labelcontraseña.setHorizontalAlignment(SwingConstants.RIGHT);
 		contenido.add(Labelcontraseña);
 		
 		JTextField campoAdmin = new JTextField();
-		campoAdmin.setBounds(220, 150, 150, 25);
+		campoAdmin.setBounds(220, 100, 150, 25);
 		campoAdmin.setFont(campoAdmin.getFont().deriveFont(15f));
 		contenido.add(campoAdmin);
 		
-		JTextField camponomusuario = new JTextField();
-		camponomusuario.setBounds(220, 200, 150, 25);
-		camponomusuario.setFont(camponomusuario.getFont().deriveFont(15f));
-		contenido.add(camponomusuario);
+		JTextField campoNomUsuario = new JTextField();
+		campoNomUsuario.setBounds(220, 150, 150, 25);
+		campoNomUsuario.setFont(campoNomUsuario.getFont().deriveFont(15f));
+		contenido.add(campoNomUsuario);
 		
 		JTextField campoContraseña = new JTextField();
-		campoContraseña.setBounds(220, 250, 150, 25);
+		campoContraseña.setBounds(220, 200, 150, 25);
 		campoContraseña.setFont(Labelnomusuario.getFont().deriveFont(15f));
 		contenido.add(campoContraseña);
 		
@@ -63,7 +63,7 @@ public class InternalFrameUsuarios extends InternalFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			campoAdmin.setText("");
-			camponomusuario.setText("");
+			campoNomUsuario.setText("");
 			campoContraseña.setText("");
 			}
 		});
@@ -77,7 +77,7 @@ public class InternalFrameUsuarios extends InternalFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String textoAdmin = campoAdmin.getText();
-			String nombre_usuario = camponomusuario.getText();
+			String nombre_usuario = campoNomUsuario.getText();
 			String contraseña = campoContraseña.getText();
 			if (textoAdmin.isBlank() || nombre_usuario.isBlank() || contraseña.isBlank()) {
 				JOptionPane.showMessageDialog(null, "Introduce datos en todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -85,7 +85,7 @@ public class InternalFrameUsuarios extends InternalFrame {
 			}
 			
 			// Convertir a int después de validar que no están vacíos
-            int admin      = Integer.parseInt(textoAdmin);
+            int admin = Integer.parseInt(textoAdmin);
             
             Database.insertarDatosUsuarios(admin, nombre_usuario, contraseña);
 			}

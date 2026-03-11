@@ -19,25 +19,25 @@ public class InternalFrameServidores extends InternalFrame {
 
         JLabel LabelIdSede = new JLabel("id_sede");
         LabelIdSede.setBounds(50, 150, 180, 30);
-        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
         JLabel LabelNombreSala = new JLabel("nombre_sala");
         LabelNombreSala.setBounds(50, 200, 180, 30);
-        LabelNombreSala.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelNombreSala.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelNombreSala.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelNombreSala);
 
         JLabel LabelNumRacks = new JLabel("num_racks");
         LabelNumRacks.setBounds(50, 250, 180, 30);
-        LabelNumRacks.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelNumRacks.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelNumRacks.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelNumRacks);
 
         JLabel LabelSuperficie = new JLabel("superficie_m2");
         LabelSuperficie.setBounds(50, 300, 180, 30);
-        LabelSuperficie.setFont(new Font("Consolas", Font.BOLD, 20));
+        LabelSuperficie.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelSuperficie.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelSuperficie);
 
