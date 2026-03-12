@@ -1,3 +1,11 @@
-id_sede,nombre_sede,ciudad,pais,superficie_m2
-1,Sede_Centro_Datos_A,Bilbao,España,2000
-2,Sede_Centro_Datos_B,Santander,España,1500
+id_sede,nombre_sede,ciudad,superficie_m2
+1,Sede Aurora,Madrid,1200
+2,Centro Boreal,Buenos Aires,950
+3,Edificio Horizonte,Bogota,1500
+4,Sede Atlantica,Lisboa,800
+5,Torre Innovar,Ciudad de Mexico,2100
+6,Campus Solaris,Barcelona,1750
+7,Oficina Nebula,Santiago de Chile,900
+8,Complejo Prisma,Paris,1600
+9,Sede Vanguardia,Lima,1100
+10,Hub Continental,Berlin,1400
