@@ -1,4 +1,4 @@
-id_usuario,id_usuario_admin,id_empleado,nombre_usuario,contrase�a
+id_usuario,id_usuario_admin,id_empleado,nombre_usuario,contrasena
 1,0,1,carlos.gomez,4821
 2,1,2,lucia.martinez,1934
 3,0,3,andres.lopez,7502
