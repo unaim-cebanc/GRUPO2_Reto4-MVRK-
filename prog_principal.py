@@ -1,6 +1,7 @@
 import pandas as pd
 from os import system
 from sys import exit
+from time import sleep
 
 # Diccionario de archivos CSV 
 archivos_sedes = {
@@ -25,6 +26,8 @@ def mostrar_menu_archivos():
     print("▐ 4. sala_servidores.csv                          ▌")
     print("▐ 5. sedes.csv                                    ▌")
     print("▐ 6. sistemas_refrigeracion.csv                   ▌")
+    print("▐ 7. empleados.csv                                ▌")
+    print("▐ 8. usuarios.csv                                 ▌")
     print("▐ 0. Volver al menú principal                     ▌")
     print("▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌")
 
@@ -51,33 +54,37 @@ def menu_generico():
                 print(f" Error al leer archivo: {e}")
         #===============================Fin ayuda IA=========================================
         else:
-            print(" Opción no válida.")
+            print("Opción no válida.")
+            sleep(3)
 
 def buscar_por_sede():
-    system("cls")
-    print("\n▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌")
-    print("▐ MENÚ BUSQUEDAS - SEDES                          ▌")
-    print("▐"+"="*49 + "▌")
-    print("▐ 1. Sede Aurora                                  ▌")
-    print("▐ 2. Centro Boreal                                ▌")
-    print("▐ 3. Edificio Horizonte                           ▌")
-    print("▐ 4. Sede Atlántica                               ▌")
-    print("▐ 5. Torre Innovar                                ▌")
-    print("▐ 6. Campus Solaris                               ▌")
-    print("▐ 7. Oficina Nébula                               ▌")
-    print("▐ 8. Complejo Prisma                              ▌")
-    print("▐ 9. Sede Vanguardia                              ▌")
-    print("▐ 10. Hub Continental                             ▌")
-    print("▐ 0. Volver al menú principal                     ▌")
-    print("▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌")
-    opcion = int(input("Sobre que sede quieres hacer una búsqueda: "))
-    match opcion:
-        case opcion if 1 <= opcion <= 10:
-            hacer_busqueda_sedes(opcion)
-        case 0:
-            main()
-    # Menu principal con bucle infinito hasta salir.
-    
+    while True:
+        system("cls")
+        print("\n▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌")
+        print("▐ MENÚ BUSQUEDAS - SEDES                          ▌")
+        print("▐"+"="*49 + "▌")
+        print("▐ 1. Sede Aurora                                  ▌")
+        print("▐ 2. Centro Boreal                                ▌")
+        print("▐ 3. Edificio Horizonte                           ▌")
+        print("▐ 4. Sede Atlántica                               ▌")
+        print("▐ 5. Torre Innovar                                ▌")
+        print("▐ 6. Campus Solaris                               ▌")
+        print("▐ 7. Oficina Nébula                               ▌")
+        print("▐ 8. Complejo Prisma                              ▌")
+        print("▐ 9. Sede Vanguardia                              ▌")
+        print("▐ 10. Hub Continental                             ▌")
+        print("▐ 0. Volver al menú principal                     ▌")
+        print("▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌")
+        opcion = int(input("Sobre que sede quieres hacer una búsqueda: "))
+        match opcion:
+            case opcion if 1 <= opcion <= 10:
+                hacer_busqueda_sedes(opcion)
+            case 0:
+                main()
+        # Menu principal con bucle infinito hasta salir.
+            case _:
+                print("Opción no valida, eliga una que aparezca en la lista")
+                sleep(3)
     #==============================ayudado con IA========================================
 def hacer_busqueda_sedes(num_sede):
     system("cls")
@@ -98,6 +105,8 @@ def hacer_busqueda_sedes(num_sede):
             print(" Archivo no encontrado. Verifica que esté en la misma carpeta.")
         except Exception as e:
             print(f" Error al leer archivo: {e}")
+        else:
+            print ("el archivo que eliges no existe, elige uno que esté en la lista")
     if opcion in archivos_sedes:
         try:
             df = pd.read_csv(archivos_sedes[opcion])
@@ -244,7 +253,8 @@ def main():
             print(" ¡Hasta luego!")
             break
         else:
-            print(" Opción no válida. Intenta de nuevo.")
+            print("Opción no válida. Intenta de nuevo.")
+            sleep(3)
 
 if __name__ == "__main__":
     main()
