@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * Clase que controla todas las operaciones que involucren a la base de datos
- * @author Unai, Aimar, Gahona, Aroa
+ * @author Unai, Aimar, Unax, Aroa
  */
 public class Database {
 

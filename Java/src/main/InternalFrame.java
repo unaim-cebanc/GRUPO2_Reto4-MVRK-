@@ -1,7 +1,10 @@
 package main;
 	import javax.swing.JInternalFrame;
 
-	public class InternalFrame extends JInternalFrame{
+/**
+ * Base que se usa para crear los diferentes internal frames
+ */
+public class InternalFrame extends JInternalFrame{
 	static int openFrameCount = 0;
 	static final int xOffset = 30, yOffset = 30;
 	 

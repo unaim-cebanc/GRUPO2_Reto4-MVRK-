@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * Internal Frame que contiene los elementos para insertar datos a la tabla de emisiones
+ * @author Unax
+ */
 public class InternalFrameEmisiones extends InternalFrame {
    
 	/**

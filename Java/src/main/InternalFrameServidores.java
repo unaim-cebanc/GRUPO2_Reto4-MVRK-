@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * Internal Frame que contiene los elementos para insertar datos a la tabla de servidores
+ * @author Unax
+ */
 public class InternalFrameServidores extends InternalFrame {
     
 	

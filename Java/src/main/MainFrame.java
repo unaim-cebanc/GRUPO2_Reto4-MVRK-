@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.*;
 
+/**
+ * Frame principal en el que el usuario interactua la mayoria del tiempo, el usuario
+ * puede tomar tres acciones, añadir elementos a la base de datos, eliminar elementos de la base de datos, o exportar las tablas a .csv
+ * @author Unax
+ */
 public class MainFrame extends JFrame implements ActionListener {
 	public static String idioma = InicioFrame.getIdioma();
 	private JDesktopPane desktop;
