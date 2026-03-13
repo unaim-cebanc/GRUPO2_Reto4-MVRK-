@@ -1,3 +1,4 @@
+package main;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class InternalFrameConsumoEnergia extends InternalFrame {
-    public InternalFrameConsumoEnergia() {
+    
+	/**
+	 * Contructor del internal frame para insertar datos en la tabla de consumo de energia
+	 */
+	public InternalFrameConsumoEnergia() {
 
         JPanel contenido = new JPanel();
         contenido.setLayout(null);

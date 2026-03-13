@@ -1,3 +1,4 @@
+package main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +23,6 @@ public class Database {
     private static boolean admin;
 
     /**
-     * Autor: Unai Manterola <br></br>
      * Valida que el usuario y la contraseña introducidos en el programa existen en la base de datos,
      * verifcando que la pareja de datos introducidos con correctos a partir de un SELECT.
      * @param usuario Usuario introducido en el JTextField userField en InicioFrame.java
@@ -70,10 +70,8 @@ public class Database {
 
 
     /**
-     * Autor: Aimar Garcia <br></br>
      * Exporta todas las tablas de la base de datos a ficheros CSV independientes
      * en la carpeta indicada.
-     *
      * @param carpetaDestino Ruta de la carpeta donde se guardarán los CSV.
      */
     public static void exportarBDaCSVs(String carpetaDestino) throws SQLException, IOException {
@@ -96,7 +94,6 @@ public class Database {
     }
 
     /**
-     * Autor: Aimar Garcia <br></br>
      * Exporta una tabla concreta a CSV.
      * @param conn La conexion con la BBDD
      * @param tabla Nombre de tabla a exportar
@@ -150,7 +147,7 @@ public class Database {
     }
 	
     /**
-     * Autora: Aroa Hernández <br></br>
+     * Autora: Aroa Hernández
      * Elimina datos de una tabla de la BBDD
      */
     public static void eliminarDatos() {
@@ -223,7 +220,6 @@ public class Database {
     }
 	
     /**
-     * Autor: Unax Gahona <br></br>
      * Perimete insertar datos en la tabla de Sedes de la BBDD
      * @param nombre Nombre de la sede
      * @param ciudad Ciudad donde se aloja la sede
@@ -257,7 +253,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Inserta datos en la tabla de Usuarios de la BBDD
      * @param admin
      * @param nombre_usuario
@@ -291,7 +286,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Permite insertar datos en la tabla de residuos de la BBDD
      * @param id_sede Id de la sede que ha generado los datos
      * @param tipo_residuos Tipo de residuos generados
@@ -330,7 +324,6 @@ public class Database {
     }
     
 	/**
-	 * Autor: Unax Gahona <br></br>
 	 * Permite insertar datos a la tabla de Usuarios de la BBDD
 	 * @param id_empleado_gerente Id del empleado gerente
 	 * @param id_sede Id de la sede en la que trabaja el empleado
@@ -369,7 +362,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Permite insertar datos a la tabla de Consumo de energia de la BBDD
      * @param id_sede Id de la sede a la que pertenece el registro de consumo
      * @param kwh_servidores Cantidad de Kw/h que consumen los servidores
@@ -408,7 +400,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Permite insertar datos la tabla de Emisiones de la base de datos
      * @param id_sede Id de la sede a la que pertenecen los datos sobre las emisiones
      * @param tipo_emision Tipo de emision que ha generado la sede
@@ -445,7 +436,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Permite insertar datos a la tabla de Salas de servidores de la BBDD
      * @param id_sede Id de la sede a la que pertenece la sala
      * @param nombre_sala Nombre que se le da a la sala
@@ -482,7 +472,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unax Gahona <br></br>
      * Permite insertar datos a la tabla de Sistemas de refrigeracion de la BBDD
      * @param id_sala_servidores Id de la sala de servidores que contiene el sistema de refrigeracion
      * @param tipo_sistema Tipo de sistema que realiza la refrigeracion
@@ -519,7 +508,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unai Manterola <br></br>
      * Establece si el usuario es un usuario administrador o no
      * @param valor Valor que decide si el usuario es administrador o no, si es NULL el usuario NO es administrador,
      * en cualquier otro caso, el usuario SI es administrador.
@@ -533,7 +521,6 @@ public class Database {
     }
     
     /**
-     * Autor: Unai Manterola <br></br>
      * Permite visualizar el valor de la variable admin
      * @return Devuelve el valor de admin
      */

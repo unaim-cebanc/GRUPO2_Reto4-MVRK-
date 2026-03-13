@@ -1,3 +1,4 @@
+package main;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,66 +10,69 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class InternalFrameResiduos extends InternalFrame {
-    public InternalFrameResiduos() {
+public class InternalFrameEmisiones extends InternalFrame {
+   
+	/**
+	 * Constructor del internal frame para insertar datos en la tabla de emisiones
+	 */
+	public InternalFrameEmisiones() {
 
         JPanel contenido = new JPanel();
         contenido.setLayout(null);
         add(contenido);
 
-
         JLabel LabelIdSede = new JLabel("id_sede");
-        LabelIdSede.setBounds(50, 150, 150, 30);
+        LabelIdSede.setBounds(50, 150, 180, 30);
         LabelIdSede.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelIdSede.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelIdSede);
 
-        JLabel LabelTipoResiduo = new JLabel("tipo_residuos");
-        LabelTipoResiduo.setBounds(50, 200, 150, 30);
-        LabelTipoResiduo.setFont(new Font("Consolas", Font.BOLD, 15));
-        LabelTipoResiduo.setHorizontalAlignment(SwingConstants.RIGHT);
-        contenido.add(LabelTipoResiduo);
+        JLabel LabelTipoEmision = new JLabel("tipo_emision");
+        LabelTipoEmision.setBounds(50, 200, 180, 30);
+        LabelTipoEmision.setFont(new Font("Consolas", Font.BOLD, 15));
+        LabelTipoEmision.setHorizontalAlignment(SwingConstants.RIGHT);
+        contenido.add(LabelTipoEmision);
 
-        JLabel LabelCantidad = new JLabel("cantidad_kg");
-        LabelCantidad.setBounds(50, 250, 150, 30);
+        JLabel LabelCantidad = new JLabel("cantidad_toneladas");
+        LabelCantidad.setBounds(50, 250, 180, 30);
         LabelCantidad.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelCantidad);
 
-        JLabel LabelMetodo = new JLabel("metodo_gestión");
-        LabelMetodo.setBounds(50, 300, 150, 30);
-        LabelMetodo.setFont(new Font("Consolas", Font.BOLD, 15));
-        LabelMetodo.setHorizontalAlignment(SwingConstants.RIGHT);
-        contenido.add(LabelMetodo);
+        JLabel LabelFuente = new JLabel("fuente");
+        LabelFuente.setBounds(50, 300, 180, 30);
+        LabelFuente.setFont(new Font("Consolas", Font.BOLD, 15));
+        LabelFuente.setHorizontalAlignment(SwingConstants.RIGHT);
+        contenido.add(LabelFuente);
 
         JLabel LabelFecha = new JLabel("fecha");
-        LabelFecha.setBounds(50, 350, 150, 30);
+        LabelFecha.setBounds(50, 350, 180, 30);
         LabelFecha.setFont(new Font("Consolas", Font.BOLD, 15));
         LabelFecha.setHorizontalAlignment(SwingConstants.RIGHT);
         contenido.add(LabelFecha);
 
         JTextField campoIdSede = new JTextField();
-        campoIdSede.setBounds(220, 150, 150, 25);
+        campoIdSede.setBounds(250, 150, 150, 25);
         campoIdSede.setFont(campoIdSede.getFont().deriveFont(15f));
         contenido.add(campoIdSede);
 
-        JTextField campoTipoResiduo = new JTextField();
-        campoTipoResiduo.setBounds(220, 200, 150, 25);
-        campoTipoResiduo.setFont(campoTipoResiduo.getFont().deriveFont(15f));
-        contenido.add(campoTipoResiduo);
+        JTextField campoTipoEmision = new JTextField();
+        campoTipoEmision.setBounds(250, 200, 150, 25);
+        campoTipoEmision.setFont(campoTipoEmision.getFont().deriveFont(15f));
+        contenido.add(campoTipoEmision);
 
         JTextField campoCantidad = new JTextField();
-        campoCantidad.setBounds(220, 250, 150, 25);
+        campoCantidad.setBounds(250, 250, 150, 25);
         campoCantidad.setFont(campoCantidad.getFont().deriveFont(15f));
         contenido.add(campoCantidad);
 
-        JTextField campoMetodo = new JTextField();
-        campoMetodo.setBounds(220, 300, 150, 25);
-        campoMetodo.setFont(campoMetodo.getFont().deriveFont(15f));
-        contenido.add(campoMetodo);
+        JTextField campoFuente = new JTextField();
+        campoFuente.setBounds(250, 300, 150, 25);
+        campoFuente.setFont(campoFuente.getFont().deriveFont(15f));
+        contenido.add(campoFuente);
 
         JTextField campoFecha = new JTextField();
-        campoFecha.setBounds(220, 350, 150, 25);
+        campoFecha.setBounds(250, 350, 150, 25);
         campoFecha.setFont(campoFecha.getFont().deriveFont(15f));
         contenido.add(campoFecha);
 
@@ -80,9 +84,9 @@ public class InternalFrameResiduos extends InternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 campoIdSede.setText("");
-                campoTipoResiduo.setText("");
+                campoTipoEmision.setText("");
                 campoCantidad.setText("");
-                campoMetodo.setText("");
+                campoFuente.setText("");
                 campoFecha.setText("");
             }
         });
@@ -94,23 +98,23 @@ public class InternalFrameResiduos extends InternalFrame {
         agregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String textoIdSede    = campoIdSede.getText();
-                String tipo_residuos  = campoTipoResiduo.getText();
-                String textoCantidad  = campoCantidad.getText();
-                String metodo_gestion = campoMetodo.getText();
-                String fecha          = campoFecha.getText();
+                String textoIdSede      = campoIdSede.getText();
+                String tipo_emision     = campoTipoEmision.getText();
+                String textoCantidad    = campoCantidad.getText();
+                String fuente           = campoFuente.getText();
+                String textoFecha       = campoFecha.getText();
 
-                if (textoIdSede.isBlank() || tipo_residuos.isBlank() ||
-                    textoCantidad.isBlank() || metodo_gestion.isBlank() || fecha.isBlank()) {
+                if (textoIdSede.isBlank() || tipo_emision.isBlank() ||
+                    textoCantidad.isBlank() || fuente.isBlank() || textoFecha.isBlank()) {
                     JOptionPane.showMessageDialog(null, "Introduce datos en todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                // Convertir a int los campos numéricos
-                int id_sede      = Integer.parseInt(textoIdSede);
-                int cantidad_kg  = Integer.parseInt(textoCantidad);
 
-                Database.insertarDatosResiduos(id_sede, tipo_residuos, cantidad_kg, metodo_gestion, fecha);
+                int id_sede            = Integer.parseInt(textoIdSede);
+                int cantidad_toneladas = Integer.parseInt(textoCantidad);
+
+                Database.insertarDatosEmisiones(id_sede, tipo_emision, cantidad_toneladas, fuente, textoFecha);
             }
         });
 

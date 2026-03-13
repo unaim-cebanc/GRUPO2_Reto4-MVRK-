@@ -1,4 +1,6 @@
+package main;
 import javax.swing.*;
+
 import java.awt.Font;
 import java.awt.SystemColor;
 /*
@@ -13,11 +15,11 @@ import java.awt.event.ActionListener;
 
 /**
  * JFrame de Inicio de Sesión
- * @author Unai
- * @version 2.1
+ * @author Unai, Aroa
+ * @version 3
  */
 public class InicioFrame extends JFrame {
-	
+
 	private JTextField userField;
 	private JLabel userLabel, pswLabel;
 	private JMenuBar menuBar;
@@ -31,69 +33,89 @@ public class InicioFrame extends JFrame {
 	private String loginMsg = "Sesión iniciada correctamente!";
 	
 	/**
+	 * Autor: Unai Manterola
 	 * Constructor del JFrame InicioFrame
 	 */
 	InicioFrame(){
 		
 		// --- Configuración aspecto JFrame --- //
-		this.setTitle("Inicio Sesión Demo");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setTitle("Inicio Sesión"); // Titulo ventana
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cierra el programa al cerrar la ventana
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza el aspecto del programa
 		// -----------------------------------//
 		
 		// --- Barra de menú superior --- //
+		// Crea la barra del menú
 		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		
+		//Crea un item que va en la barra del menu
 		menu = new JMenu("Menu");
 		
+		// Crea un item que va dentro de "Menu"
 		salirItem = new JMenuItem("Salir");
 		salirItem.addActionListener(e -> System.exit(0)); // Lambda function, cierra la aplicación
 		
+		// Añade los elementos la barra
 		menuBar.add(menu);
 		menu.add(salirItem);
 		this.setJMenuBar(menuBar);
 		// -------------------------------//
 		
 		// --- JPanel principal --- //
-		panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(SystemColor.activeCaption);
-		this.add(panel);
+		panel = new JPanel(); // Crea el panel
+		panel.setLayout(null); // Elimina el layout 
+		panel.setBackground(SystemColor.activeCaption); // Establece el color de fondo
+		this.add(panel); // Añade el panel al frame
 		// ------------------------//
 		
 		// --- Label + TextField Usuario --- //
+		// Crea el label y establece su posicion
 		userLabel = new JLabel("Usuario:");
 		userLabel.setBounds(530, 400, 160, 30);
+		
+		// Establece la fuente del label y lo posiciona la derecha
 		userLabel.setFont(new Font("Consolas", Font.BOLD, 20));
 		userLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(userLabel);
 		
+		// Crea la caja de texto y establece su posicion y tamaño
 		userField = new JTextField();
 		userField.setBounds(710, 400, 200, 30);
+		
+		// Establece la fuente del texto
 		userField.setFont(new Font("Consolas", Font.BOLD, 20));
 		panel.add(userField);
 		// ---------------------------------//
 		
 		// --- Label + Field Contraseña --- //
+		// Crea el label y establece su posicion
 		pswLabel = new JLabel("Contraseña:");
 		pswLabel.setBounds(530, 480, 160, 30);
+		
+		// Establece la fuente del texto y lo posiciona a la derecha
 		pswLabel.setFont(new Font("Consolas", Font.BOLD, 20));
 		pswLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(pswLabel);
 		
+		// Crea la caja de contraseña y establece su posicion en el frame
 		pswField = new JPasswordField();
 		pswField.setBounds(710, 480, 200, 30);
+		
+		// Establece su fuente
 		pswField.setFont(new Font("Consolas", Font.BOLD, 20));
 		panel.add(pswField);
 		// ---------------------------------//
 		
 		// --- Botón inicio sesión --- //
+		// Crea el boton y lo pone en su lugar
 		inicioButton = new JButton(">>");
 		inicioButton.setFont(new Font("Consolas", Font.BOLD, 10));
 		inicioButton.setBounds(910, 480, 45, 30);
 		
 		panel.add(inicioButton);
+		
+		// Action Listener que se ejecuta al hacer clic en el boton
 		inicioButton.addActionListener(new ActionListener() {
 			
 			@Override

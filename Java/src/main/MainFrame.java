@@ -1,3 +1,4 @@
+package main;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -7,22 +8,23 @@ import javax.swing.JMenuBar;
 import javax.swing.JFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.xml.crypto.Data;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements ActionListener {
-public static String idioma = InicioFrame.getIdioma();
-private JDesktopPane desktop;
-JButton deleteButton;      // BOTÓN DEL RECUADRO
-JPanel deletePanel;        // RECUADRO
+	public static String idioma = InicioFrame.getIdioma();
+	private JDesktopPane desktop;
+	JButton deleteButton;      // BOTÓN DEL RECUADRO
+	JPanel deletePanel;        // RECUADRO
 
-    public MainFrame() {
+   /**
+    * Constructor del frame principal que contiene la funcionalidad principal del programa
+    */
+	public MainFrame() {
  
     	
     	
@@ -54,7 +56,11 @@ JPanel deletePanel;        // RECUADRO
         setJMenuBar(createMenuBar());
     }
 
-    private JMenuBar createMenuBar() {
+    /**
+     * Crea la barra de menu
+     * @return Devuelve la barra del menú
+     */
+	private JMenuBar createMenuBar() {
         
     	JMenuBar menuBar = new JMenuBar();
     	menuBar.setBorderPainted(false);
@@ -275,8 +281,10 @@ JPanel deletePanel;        // RECUADRO
     }
     
     
- // Recuadro con botón en la pantalla principal
-    private void createDeletePanel() {
+    /**
+     * Crea el panel con el boton para eliminar datos de la base de datos
+     */
+	private void createDeletePanel() {
         deletePanel = new JPanel();
         deletePanel.setLayout(null);
         deletePanel.setBounds(500, 30, 260, 120); // posición y tamaño del recuadro
@@ -309,7 +317,11 @@ JPanel deletePanel;        // RECUADRO
         deletePanel.add(deleteButton);
         desktop.add(deletePanel);
     }
-    private void createAddPanel() {
+    
+	/**
+	 * Crea el panel con el boton en la pantalla principal para añadir datos en la base de datos
+	 */
+	private void createAddPanel() {
         JPanel addPanel = new JPanel();
         addPanel.setLayout(null);
         addPanel.setBounds(970, 30, 260, 120); // posición y tamaño del recuadro
@@ -339,7 +351,10 @@ JPanel deletePanel;        // RECUADRO
         desktop.add(addPanel);
     }
     // Recuadro con botón en la pantalla principal
-    private void createExportPanel() {
+    /**
+     * Crea el panel con el boton que permite exportar los datos de la base a .csv
+     */
+	private void createExportPanel() {
         JPanel exportPanel = new JPanel();
         exportPanel.setLayout(null);
         exportPanel.setBounds(30, 30, 260, 120); // posición y tamaño del recuadro
@@ -371,7 +386,11 @@ JPanel deletePanel;        // RECUADRO
     }
     
     //React to menu selections.
-    public void actionPerformed(ActionEvent e) {
+    
+	/**
+	 * Detecta las acciones que hace el usuario y dependiendo de la accion realizada se ejecuta un metodo u otro
+	 */
+	public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("delete")) {
             Database.eliminarDatos();
         } else if (e.getActionCommand().equals("añadir")) {
@@ -399,7 +418,10 @@ JPanel deletePanel;        // RECUADRO
         } 
     }  
     
-    private void createSedesFrame() {
+    /**
+     * Crea el internal frame para añadir para añadir datos a la tabla sedes
+     */
+	private void createSedesFrame() {
     	InternalFrameSedes frame = new InternalFrameSedes();
         frame.setVisible(true); //necessary as of 1.3
         desktop.add(frame);
@@ -415,7 +437,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createUsuariosFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla usuarios
+     */
+	private void createUsuariosFrame() {
     	InternalFrameUsuarios frame = new InternalFrameUsuarios();
         frame.setVisible(true); //necessary as of 1.3
         desktop.add(frame);
@@ -431,7 +456,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createResiduosFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla residuos
+     */
+	private void createResiduosFrame() {
         InternalFrameResiduos frame = new InternalFrameResiduos();
         frame.setVisible(true);
         desktop.add(frame);
@@ -447,7 +475,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createEmpleadosFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla empleados
+     */
+	private void createEmpleadosFrame() {
         InternalFrameEmpleados frame = new InternalFrameEmpleados();
         frame.setVisible(true);
         desktop.add(frame);
@@ -463,7 +494,11 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createConsumoEnergiaFrame() {
+    
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla consumo de energia
+     */
+	private void createConsumoEnergiaFrame() {
         InternalFrameConsumoEnergia frame = new InternalFrameConsumoEnergia();
         frame.setVisible(true);
         desktop.add(frame);
@@ -479,7 +514,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createEmisionesFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla emisiones
+     */
+	private void createEmisionesFrame() {
         InternalFrameEmisiones frame = new InternalFrameEmisiones();
         frame.setVisible(true);
         desktop.add(frame);
@@ -495,7 +533,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createServidoresFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla de salas de servidores
+     */
+	private void createServidoresFrame() {
         InternalFrameServidores frame = new InternalFrameServidores();
         frame.setVisible(true);
         desktop.add(frame);
@@ -511,7 +552,10 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    private void createRefrigeracionFrame() {
+	/**
+     * Crea el internal frame para añadir para añadir datos a la tabla sistemas de refrigeracion
+     */
+	private void createRefrigeracionFrame() {
         InternalFrameRefrigeracion frame = new InternalFrameRefrigeracion();
         frame.setVisible(true);
         desktop.add(frame);
@@ -527,12 +571,17 @@ JPanel deletePanel;        // RECUADRO
         } catch (java.beans.PropertyVetoException e) {}
     }
     
-    //Quit the application.
+    /**
+     * Permite cerrar la aplicacion
+     */
     private void quit() {
         System.exit(0);
     }
 
     // Exportar BD a CSV (lo llaman el menú y el botón)
+    /**
+     * Exporta las tablas de la base de datos a .csv
+     */
     private void exportarBD() {
         javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
         chooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
@@ -558,6 +607,9 @@ JPanel deletePanel;        // RECUADRO
     }
 
     
+    /**
+     * Permite elegir una tabla especifica para exportar
+     */
     private void elegirTabla() {
     	Object[] opciones = {"Sedes",
     			"Consumo de Energia",
@@ -596,8 +648,10 @@ JPanel deletePanel;        // RECUADRO
     		createUsuariosFrame();
     	}
     }
+    
+    
     /**
-     * Create the GUI and show it.
+     * Crea la GUI y la muestra.
      */
     public static void createAndShowGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);

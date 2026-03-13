@@ -1,3 +1,4 @@
+package main;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class InternalFrameSedes extends InternalFrame {
+	
+	/**
+	 * Constructor del internal frame para insertar datos en la tabla de sedes
+	 */
 	public InternalFrameSedes() {
 		
 		JPanel contenido = new JPanel();

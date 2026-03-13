@@ -1,19 +1,20 @@
+package main;
 	import javax.swing.JInternalFrame;
 
 	public class InternalFrame extends JInternalFrame{
 	static int openFrameCount = 0;
 	static final int xOffset = 30, yOffset = 30;
 	 
+	/**
+	 * Contructor del internal frame
+	 */
 	public InternalFrame() {
 		 super("Document #" + (++openFrameCount), 
 				 true, //resizable
-				 true, //closable
+				 true, //cerrable
 				 true, //maximizable
-				 false);//iconifiable
-		 //...Create the GUI and put it in the window...
-		 //...Then set the window size or call pack...
+				 false);
 		 setSize(300,300);
-		 //Set the window's location.
 	     setLocation(xOffset*openFrameCount, yOffset*openFrameCount);
 	 }
 	 
